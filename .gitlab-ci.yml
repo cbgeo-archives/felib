@@ -1,0 +1,18 @@
+# Minimal GCC build
+GCC build:
+  script:
+    - autoreconf -fi
+    - ./configure
+    - make clean && make -j4
+  tags:
+    - cb-geo
+
+# Clang static analysis build
+Clang build:
+  script:
+    - autoreconf -fi
+    - ./configure CXX=clang++
+    - make clean
+    - scan-build make -j4
+  tags:
+    - cb-geo
