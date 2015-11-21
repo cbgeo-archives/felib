@@ -12,4 +12,4 @@
 
 2. make clean && make -jN (where N is the number of cores)
 
-3. Run lem `./lem`
+3. Run lem `./felib`
