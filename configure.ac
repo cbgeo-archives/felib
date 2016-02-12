@@ -30,7 +30,7 @@ AX_CXX_COMPILE_STDCXX_11([ext],[mandatory])
 #BOOST_REQUIRE([1.40.0])
 
 # Enable silent rules for build
-AM_SILENT_RULES([yes])
+AM_SILENT_RULES([no])
 
 # Checks for header files and functions.
 AC_HEADER_STDC

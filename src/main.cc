@@ -1,4 +1,6 @@
 #include "node_base.h"
+#include "element_base.h"
+
 
 #include <array>
 #include <iostream>
