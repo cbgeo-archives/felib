@@ -1,5 +1,5 @@
-#ifndef FELIB_SRC_NODE_BASE_H_
-#define FELIB_SRC_NODE_BASE_H_
+#ifndef FELIB_NODE_BASE_H_
+#define FELIB_NODE_BASE_H_
 
 #include <array>
 #include <iostream>
@@ -63,4 +63,4 @@ protected:
   std::array<double, Tdim> coordinates_;
 };
 
-#endif // FELIB_SRC_NODE_BASE_H_
+#endif // FELIB_NODE_BASE_H_

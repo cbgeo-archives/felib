@@ -1,5 +1,5 @@
-#ifndef FELIB_SRC_ELEMENT_BASE_H_
-#define FELIB_SRC_ELEMENT_BASE_H_
+#ifndef FELIB_ELEMENT_BASE_H_
+#define FELIB_ELEMENT_BASE_H_
 
 #include <array>
 #include <iostream>
@@ -24,70 +24,51 @@ class felib::ElementBase {
   // Constructor with id, node_num and nodes
   //! \param[in] id assign as the id_ of the element
   //! \param[in] num_nodes number of nodes of the element
-ElementBase(const unsigned& id, const unsigned num_nodes)
-  : id_{id}, num_nodes_{num_nodes} {}
- 
+  ElementBase(const unsigned& id, const unsigned& num_nodes)
+      : id_{id}, num_nodes_{num_nodes} {
+    // initialise the size of vector of node pointers and set it to null_ptr
+  }
+
   //! Destructor
-  virtual ~ElementBase(){}
+  virtual ~ElementBase() {}
 
   //! Return id of the element
   //! \return id_ id of the element
   unsigned id() const { return id_; }
 
-//! Assign nodes
-//! <param[in] nodes Assign nodes as nodes of the element
+  //! Assign nodes
+  //! <param[in] nodes Assign nodes as nodes of the element
 
-//  std::vector<std::shared_ptr<felib::NodeBase<Tdim>>> vec_nodes_ptr_;
+  //  std::vector<std::shared_ptr<felib::NodeBase<Tdim>>> vec_nodes_ptr_;
 
-//void ElementBase::add_nodes(){
-  void add_nodes(std::shared_ptr<NodeBase<Tdim>> node_ptr_){
-    vec_nodes_ptr_.push_back(node_ptr_);
+  // Insert a node pointer at a specific index
+  void insert_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr_,
+                 const unsigned& index) {
+    // Check if the node ptr is null and then insert pointer to element at the
+    // given index
+    // vec_nodes_ptr_.push_back(node_ptr_);
   }
-
-
-  //%% we need to change the following lines:
-  /*
-vec_nodes_ptr_.reserve(num_nodes_);
-    vec_nodes_ptr_.resize(num_nodes_);
-    for (auto node : num_nodes_){
-      vec_nodes_ptr_.fill(vec_nodes_ptr_(node),vec_nodes_ptr_(node),vec_nodes_ptr.at(node);}
-
-        return vec_nodes_ptr_;
-    }
-  */
-
-  
-   //! Assign nodes
-  //! \param[in] nodes Assign nodes as nodes of the element
-  void nodes(const std::array<double, Tdim>& nodes) {
-    vec_nodes_ptr_ = nodes;
-  }
-
-  //! Return nodes
-  //! \return nodes_ return nodes of the element
-  std::array<double, Tdim> nodes() const { return vec_nodes_ptr_; }
 
   //! Info
   void info() {
-    std::cout << "Element id: " << id_ << ", nodes: ";
-    for (auto coord : vec_nodes_ptr_) std::cout << nodes << ", ";
+    std::cout << "Element id: " << id_ << "\nnodes: ";
+    for (const auto& node_ptr: vec_nodes_ptr_) 
+        std::cout << node_ptr->id() << ", ";
     std::cout << std::endl;
   }
 
-
   std::array<double, Tdim> centroid();
-  double volume();
-  double info_pass_node();
-
   
-
+  virtual double volume() = 0;
+  
+  virtual double area() = 0;
+  
  private:
   //! Copy constructor
   ElementBase(const ElementBase<Tdim>&);
 
   //! Assignement operator
   ElementBase& operator=(const ElementBase<Tdim>&);
-
 
  protected:
   //! element id
@@ -96,30 +77,18 @@ vec_nodes_ptr_.reserve(num_nodes_);
   //! element nodes number
   unsigned num_nodes_;
 
-  //! node pointer
-  std::shared_ptr<NodeBase<Tdim>> node_ptr_;
-
-  
-  //! element nodes
+  //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
-  ///vec_nodes_ptr_;
-  ///std::array<double, Tdim> nodes_;
-  ///std::vector<std::shared_ptr<Element<Tdim>>> vec_node_ptr_;
 
-
-  
   //! element centroid
   std::array<double, Tdim> centroid_;
 
   //! element volume
   double volume_;
-
-//! element info
-  double info_pass_node_;
-
   
+  //! element area
+  double area_;
 };
 
-
 #include "element_base.tcc"
-#endif  // FELIB_SRC_ELEMENT_BASE_H_
+#endif  // FELIB_ELEMENT_BASE_H_
