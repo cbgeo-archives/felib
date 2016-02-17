@@ -62,6 +62,9 @@ class felib::ElementBase {
   virtual double volume() = 0;
   
   virtual double area() = 0;
+
+  //! Iterate over nodes
+  template<typename OP> OP iterateOverNodes(OP op);
   
  private:
   //! Copy constructor
