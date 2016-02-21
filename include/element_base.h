@@ -64,7 +64,10 @@ class felib::ElementBase {
   virtual double area() = 0;
 
   //! Iterate over nodes
-  template<typename OP> OP iterateOverNodes(OP op);
+  template<typename FUNC> FUNC iterate_over_nodes(FUNC func);
+
+  //! Iterate over neighbor elements
+  template<typename FUNC> FUNC iterate_over_neighbors(FUNC func);
   
  private:
   //! Copy constructor
@@ -82,6 +85,9 @@ class felib::ElementBase {
 
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
+
+  //! vector of neighbor element pointers
+  std::vector<std::shared_ptr<ElementBase<Tdim>>> vec_neighbors_;
 
   //! element centroid
   std::array<double, Tdim> centroid_;
