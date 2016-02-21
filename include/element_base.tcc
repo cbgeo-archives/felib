@@ -14,8 +14,8 @@ std::array<double, Tdim> felib::ElementBase<Tdim>::centroid() {
 template <unsigned Tdim>
 template<typename FUNC> 
 FUNC felib::ElementBase<Tdim>::iterate_over_nodes(FUNC func) {
-    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator begin = nodes_.begin();
-    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator   end = nodes_.end();
+    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator begin = vec_nodes_ptr_.begin();
+    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator   end = vec_nodes_ptr_.end();
     return std::for_each( begin, end, func );
 }
 
@@ -24,7 +24,7 @@ FUNC felib::ElementBase<Tdim>::iterate_over_nodes(FUNC func) {
 template <unsigned Tdim>
 template<typename FUNC> 
 FUNC felib::ElementBase<Tdim>::iterate_over_neighbors(FUNC func) {
-    typename std::vector<std::shared_ptr<ElementBass<Tdim>>>::iterator begin = nodes_.begin();
-    typename std::vector<std::shared_ptr<ElementBase<Tdim>>>::iterator   end = nodes_.end();
+    typename std::vector<std::shared_ptr<ElementBase<Tdim>>>::iterator begin = vec_neighbors_.begin();
+    typename std::vector<std::shared_ptr<ElementBase<Tdim>>>::iterator   end = vec_neighbors_.end();
     return std::for_each( begin, end, func );
 }

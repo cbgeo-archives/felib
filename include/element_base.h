@@ -6,6 +6,7 @@
 #include <limits>
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 #include "node_base.h"
 
