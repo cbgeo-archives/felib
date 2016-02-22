@@ -1,5 +1,5 @@
-#ifndef FELIB_SRC_LINESHAPE_H_
-#define FELIB_SRC_LINESHAPE_H_
+#ifndef FELIB_LINESHAPE_H_
+#define FELIB_LINESHAPE_H_
 
 #include <iostream>
 #include <array>
@@ -15,8 +15,10 @@ namespace felib {
   template <unsigned Tdim, unsigned numFun> class LineShape;
 }
 
-template <unsigned Tdim, unsigned numFun> class felib::LineShape  : 
-  public felib::ShapeFunBase<Tdim, numFun > {
+template <unsigned Tdim, unsigned numFun> 
+class felib::LineShape 
+  : public felib::ShapeFunBase<Tdim, numFun > {
+
 public:
   void evaluate_shape_fun(const std::array<double, Tdim> &xi, std::array<double, numFun> &sFun);
 
@@ -28,6 +30,6 @@ public:
 
 };
 
-#include "line_shape.ipp"
+#include "line_shape.tcc"
 
-#endif // FELIB_SRC_LINESHAPE_H_
+#endif // FELIB_LINESHAPE_H_
