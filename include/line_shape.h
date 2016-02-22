@@ -15,16 +15,16 @@ namespace felib {
   template <unsigned Tdim, unsigned numFun> class LineShape;
 }
 
-template <unsigned Tdim, unsigned numFun> class felib::LineShape :
-  public felib::ShapeFunBase <unsigned Tdim, unsigned numFun> {
-
+template <unsigned Tdim, unsigned numFun> class felib::LineShape  : 
+  public felib::ShapeFunBase<Tdim, numFun > {
+public:
   void evaluate_shape_fun(const std::array<double, Tdim> &xi, std::array<double, numFun> &sFun);
 
   void evaluate_grad_shape_fun(const std::array<double, Tdim> &xi, std::array<std::array<double, numFun>, Tdim> &gradSfun);
 
-  void evaluate_jacobian();
+  void evaluate_jacobian() {};
 
-  void quadrature_points();
+  void quadrature_points() {};
 
 };
 
