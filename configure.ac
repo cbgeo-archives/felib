@@ -29,6 +29,9 @@ AX_CXX_COMPILE_STDCXX_11([ext],[mandatory])
 # BOOST Library Check 
 #BOOST_REQUIRE([1.40.0])
 
+# Check for EIGEN
+EIGEN_PATH( , , AC_MSG_ERROR(Need path to Eigen))
+
 # Enable silent rules for build
 AM_SILENT_RULES([yes])
 
@@ -71,10 +74,10 @@ AC_MSG_RESULT([$debugit])
 
 if test x"$debugit" = x"yes"; then
     AC_DEFINE([DEBUG],[],[Debug Mode])
-    AM_CXXFLAGS="$AM_CXXFLAGS -g -Wall -Werror -Wno-uninitialized -O0"
+    AM_CXXFLAGS="$AM_CXXFLAGS -g -Wall -Werror -Wno-uninitialized -O0 -fpermissive"
 else
     AC_DEFINE([NDEBUG],[],[No-debug Mode])
-    AM_CXXFLAGS="$AM_CXXFLAGS -g -O3 -std=c++11 -fPIC -Wall -Wno-uninitialized"
+    AM_CXXFLAGS="$AM_CXXFLAGS -g -O3 -std=c++11 -fPIC -Wall -Wno-uninitialized -fpermissive"
 
 fi
 

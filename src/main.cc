@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
   const unsigned NumOfSfun = 2;
   std::array<double, NumOfSfun> lineSfun{0.};
   auto line_shape = new felib::LineShape<Dim, NumOfSfun>;
-  line_shape->evaluate_shape_fun(lcoord, lineSfun);
-  std::cout << "Shape functions for the line element are: " << lineSfun[0] << " " << lineSfun[1] << std::endl;
+  // line_shape->evaluate_shape_fun(lcoord, lineSfun);
+  // std::cout << "Shape functions for the line element are: " << lineSfun[0] << " " << lineSfun[1] << std::endl;
   node->info();
 }

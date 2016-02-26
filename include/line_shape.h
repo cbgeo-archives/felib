@@ -13,40 +13,35 @@
 //! \tparam Tdim Dimenstion
 //! \tparam numFun number of shape functions
 namespace felib {
-  template <unsigned Tdim, unsigned numFun> class LineShape;
+template <unsigned Tdim, unsigned numFun>
+class LineShape;
 }
 
-template <unsigned Tdim, unsigned numFun> 
-class felib::LineShape 
-  : public felib::ShapeFunBase<Tdim, numFun > {
+template <unsigned Tdim, unsigned numFun>
+class felib::LineShape : public felib::ShapeFunBase<Tdim, numFun> {
 
-public:
-  // Default constructor do nothing
-  LineShape() {};
-
-  // Default destructor
-  ~LineShape() {};
-
-  // Evaluate shape functions 
+ public:
+  // Evaluate shape functions
   //! param[in] xi given local coordinates
   //! param[out] sFun shape functions at given local coordinates
-  void evaluate_shape_fun(const std::array<double, Tdim> &xi, Eigen::Matrix<double, 1, numFun> &sFun);
+  void evaluate_shape_fun(const std::array<double, Tdim>& xi,
+                          Eigen::Matrix<double, 1, numFun>& sFun);
 
   // Evaluate gradient of shape functions in local coordinates
   //! param[in] xi given local coordinates
   //! param[out] gradSfun local gradients of shape functions
-  void evaluate_grad_shape_fun(const std::array<double, Tdim> &xi, Eigen::Matrix<double, Tdim, numFun> &gradSfun);
+  void evaluate_grad_shape_fun(const std::array<double, Tdim>& xi,
+                               Eigen::Matrix<double, Tdim, numFun>& gradSfun);
 
-  void evaluate_jacobian() {};
+  void evaluate_jacobian(){};
 
   // Give quadrature points in local coordinates
   //! param[in] p number of quadrature points
   //! param[out] qpoints local coordinates of quadrature points
-  template<unsigned p>
-  void quadrature_points(Eigen::Matrix<double, Tdim, p> &qpoints);
-
+  // template <unsigned p>
+  // void quadrature_points(Eigen::Matrix<double, Tdim, p>& qpoints);
 };
 
 #include "line_shape.tcc"
 
-#endif // FELIB_LINESHAPE_H_
+#endif  // FELIB_LINESHAPE_H_
