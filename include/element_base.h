@@ -57,6 +57,15 @@ class felib::ElementBase {
     std::cout << std::endl;
   }
 
+  //! Add node pointers to element base class
+  // virtual std::vector<std::shared_ptr<NodeBase<Tdim>>> insert_node_ptr(vec_nodes_ptr_);
+virtual void insert_node_ptr(vec_nodes_ptr_);
+
+  //! Add node pointer to a given index
+//  virtual std::vector<std::shared_ptr<NodeBase<Tdim>>> insert_node_ptr_at(node_ptr_index);
+virtual void insert_node_ptr_at(node_ptr_index_);
+
+
   std::array<double, Tdim> centroid();
   
   virtual double volume() = 0;
@@ -80,8 +89,11 @@ class felib::ElementBase {
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
 
+  //! node pointer index
+  virtual unsigned node_ptr_index_;
+  
   //! element centroid
-  std::array<double, Tdim> centroid_;
+  virtual std::array<double, Tdim> centroid_;
 
   //! element volume
   double volume_;
