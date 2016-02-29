@@ -2,7 +2,7 @@
 #define FELIB_SHAPEFUN_BASE_H_
 
 #include <array>
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <iostream>
 #include <vector>
 
