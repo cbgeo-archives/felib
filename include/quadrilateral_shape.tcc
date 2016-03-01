@@ -153,19 +153,19 @@ inline void felib::QuadrilateralShape<2, 9>::quadrature_points(Eigen::Matrix<dou
 }
 
  
-template<unsigned Tdim, unsigned Nfunctions>
-template<unsigned p>
-void felib::QuadrilateralShape<Tdim, Nfunctions>::custom_quadrature_points(Eigen::Matrix<double, p, Tdim> &qpoints) {
-  if (p == 1) {
+template<unsigned Tdim, unsigned Tnfunctions>
+template<unsigned nquadratures>
+void felib::QuadrilateralShape<Tdim, Tnfunctions>::custom_quadrature_points(Eigen::Matrix<double, nquadratures, Tdim> &qpoints) {
+  if (nquadratures == 1) {
     qpoints(0,0) = 0.; qpoints(0,1) = 0.;
   }
-  else if (p == 4) {
+  else if (nquadratures == 4) {
     qpoints(0,0) = -0.57735; qpoints(0,1) = -0.57735;
     qpoints(1,0) =  0.57735; qpoints(1,1) = -0.57735;
     qpoints(2,0) = -0.57735; qpoints(3,2) =  0.57735;
     qpoints(3,0) =  0.57735; qpoints(2,1) =  0.57735;
   }
-  else if (p == 9) {
+  else if (nquadratures == 9) {
     qpoints(0,0) = -0.774597; qpoints(0,1) = -0.774597;
     qpoints(1,0) =  0.000000; qpoints(1,1) = -0.774597;
     qpoints(2,0) =  0.774597; qpoints(2,1) = -0.774597;
@@ -176,7 +176,7 @@ void felib::QuadrilateralShape<Tdim, Nfunctions>::custom_quadrature_points(Eigen
     qpoints(7,0) =  0.000000; qpoints(7,1) =  0.774597;
     qpoints(8,0) =  0.774597; qpoints(8,1) =  0.774597;
   }
-  else if (p == 16) {
+  else if (nquadratures == 16) {
     qpoints(0,0) = -0.861136; qpoints(0,1) = -0.861136;
     qpoints(1,0) = -0.339981; qpoints(1,1) = -0.861136;
     qpoints(2,0) =  0.339981; qpoints(2,1) = -0.861136;
@@ -195,8 +195,3 @@ void felib::QuadrilateralShape<Tdim, Nfunctions>::custom_quadrature_points(Eigen
     qpoints(15,0) =  0.861136; qpoints(3,1) = 0.861136;
   }
 }
-
-
-
-
-

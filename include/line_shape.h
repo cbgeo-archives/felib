@@ -13,36 +13,36 @@
 //! \tparam Tdim Dimenstion
 //! \tparam numFun number of shape functions
 namespace felib {
-template <unsigned Tdim, unsigned Nfunctions>
+template <unsigned Tdim, unsigned Tnfunctions>
 class LineShape;
 }
 
-template <unsigned Tdim, unsigned Nfunctions>
-class felib::LineShape : public felib::ShapeFunBase<Tdim, Nfunctions> {
+template <unsigned Tdim, unsigned Tnfunctions>
+class felib::LineShape : public felib::ShapeFunBase<Tdim, Tnfunctions> {
 
  public:
   // Evaluate shape functions
-  //! param[in] xi given local coordinates
-  //! param[out] sFun shape functions at given local coordinates
+  //! \param[in] xi given local coordinates
+  //! \param[out] sFun shape functions at given local coordinates
   void evaluate_shape_fun(const std::array<double, Tdim>& xi,
-                          Eigen::Matrix<double, Nfunctions, 1>& sFun);
+                          Eigen::Matrix<double, Tnfunctions, 1>& sFun);
 
   // Evaluate gradient of shape functions in local coordinates
-  //! param[in] xi given local coordinates
-  //! param[out] gradSfun local gradients of shape functions
+  //! \param[in] xi given local coordinates
+  //! \param[out] gradSfun local gradients of shape functions
   void evaluate_grad_shape_fun(
      const std::array<double, Tdim>& xi,
-     Eigen::Matrix<double, Nfunctions, Tdim>& gradSfun);
+     Eigen::Matrix<double, Tnfunctions, Tdim>& gradSfun);
 
-  // Give quadratue points (number is similar to Nfunctions)
+  // Give quadratue points (number is similar to Tnfunctions)
   //! \param[out] qpoints local coordinates of quadrature points
-  void quadrature_points(Eigen::Matrix<double, Nfunctions, Tdim>& qpoints);
+  void quadrature_points(Eigen::Matrix<double, Tnfunctions, Tdim>& qpoints);
 
   // Give quadrature points in local coordinates
-  //! param[in] p number of quadrature points
-  //! param[out] qpoints local coordinates of quadrature points
-  template <unsigned p>
-  void custom_quadrature_points(Eigen::Matrix<double, p, Tdim>& qpoints);
+  //! \tparam nquadratures number of quadrature points
+  //! \param[out] qpoints local coordinates of quadrature points
+  template <unsigned nquadratures>
+  void custom_quadrature_points(Eigen::Matrix<double, nquadratures, Tdim>& qpoints);
 };
 
 #include "line_shape.tcc"
