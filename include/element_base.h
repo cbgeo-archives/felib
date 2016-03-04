@@ -7,7 +7,6 @@
 #include <limits>
 #include <memory>
 #include <vector>
-
 #include "node_base.h"
 
 namespace felib {
@@ -38,6 +37,25 @@ class felib::ElementBase {
   //! Return id of the element
   //! \return id_ id of the element
   unsigned id() const { return id_; }
+
+  //! Call a node base function for a particular node
+  //! \tparam Func Function type
+  //! \param[in] nnode Node number
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func call_function_node(const unsigned& nnode, Func func);
+
+  //! Iterate over nodes
+  //! \tparam Func Function type
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func iterate_over_nodes(Func func);
+
+  //! Iterate over neighbour elements
+  //! \tparam Func Function type
+  //! \param[in] func Element base function
+  template <typename Func>
+  Func iterate_over_neighbours(Func func);
 
   //! Assign nodes
   //! \param[in] nodes Assign nodes as nodes of the element
@@ -91,6 +109,9 @@ class felib::ElementBase {
 
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
+
+  //! vector of neighbour element pointers
+  std::vector<std::shared_ptr<ElementBase<Tdim>>> vec_neighbours_;
 
   //! element centroid
   std::array<double, Tdim> centroid_;

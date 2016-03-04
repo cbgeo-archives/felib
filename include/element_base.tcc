@@ -24,3 +24,25 @@ bool felib::ElementBase<Tdim>::insert_node_ptr(
   } else
     return false;
 }
+
+//! Call a node base function for a particular node
+template <unsigned Tdim>
+template <typename Func>
+Func felib::ElementBase<Tdim>::call_function_node(const unsigned& nnode,
+                                                  Func func) {
+  return func(vec_nodes_ptr_.at(nnode));
+}
+
+//! Iterate over nodes
+template <unsigned Tdim>
+template <typename Func>
+Func felib::ElementBase<Tdim>::iterate_over_nodes(Func func) {
+  return std::for_each(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), func);
+}
+
+//! Iterate over neighbouring elements
+template <unsigned Tdim>
+template <typename Func>
+Func felib::ElementBase<Tdim>::iterate_over_neighbours(Func func) {
+  return std::for_each(vec_neighbours_.begin(), vec_neighbours_.end(), func);
+}
