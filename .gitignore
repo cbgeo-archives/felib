@@ -31,3 +31,4 @@ src/*#
 include/*#
 doc/*
 *.swp*
+*.ycm_extra_conf.pyc*

@@ -2,30 +2,18 @@
 template <unsigned Tdim>
 std::array<double, Tdim> felib::ElementBase<Tdim>::centroid() {
   // Compute centroid for 1D, 2D and 3D cases
-  std::array<double, Tdim> centroid;
-<<<<<<< HEAD
-  for (unsigned j=0; j<vec_nodes_ptr.size(); ++j){
-  for (unsigned i=0; i<Tdim; ++i){
-    centroid(j) += (vec_node_ptr.at(i)).coordinates.at(j);
-  }
-  //centroid(j) = centroid
+  std::array<double, Tdim> centroid = {{0.}};
+
+  for (const auto node_ptr : vec_nodes_ptr_) {
+    auto coordinates = node_ptr->coordinates();
+    // Use an algorithm instead to iterate over coordinates
+    // and add to centroid
+    for (unsigned i = 0; i < Tdim; ++i) {
+      centroid.at(i) += coordinates.at(i);
+    }
+    // centroid(j) = centroid
   }
   return centroid;
-}
-
-
-//! Add node pointers to element base class
-template <unsigned Tdim>
-//std::vector<std::shared_ptr<NodeBase<Tdim>>> felib::ElementBase<Tdim>::insert_node_ptr(){
-void felib::ElementBase<Tdim>::insert_node_ptr(){
-// Insert a pointer for each node
-
-
-  
-=======
-  // return centroid;
-  return 0;
->>>>>>> bf30a2ef6bb5c7b50cb460134dc343c849e8984c
 }
 
 //! Insert node pointer at a given index
