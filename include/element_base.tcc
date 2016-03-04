@@ -1,36 +1,32 @@
 //! Compute and return centroid of the element
 template <unsigned Tdim>
 std::array<double, Tdim> felib::ElementBase<Tdim>::centroid() {
- // Compute centroid for 1D, 2D and 3D cases
+  // Compute centroid for 1D, 2D and 3D cases
   std::array<double, Tdim> centroid;
- // for (unsigned i = 0; i < Tdim; ++i) {
- //   centroid(i) = 5;  // change
- //  }
- return centroid;
+  // for (unsigned i = 0; i < Tdim; ++i) {
+  //   centroid(i) = 5;  // change
+  //  }
+  return centroid;
 }
 
- //! pass arguments or call a node base function for a particular node
+//! Call a node base function for a particular node
 template <unsigned Tdim>
-template<typename Func> 
-Func felib::ElementBase<Tdim>::call_node(Func func, const unsigned numNode) {
-  return func(vec_nodes_ptr_[numNode]);
+template <typename Func>
+Func felib::ElementBase<Tdim>::call_function_node(const unsigned& nnode,
+                                                  Func func) {
+  return func(vec_nodes_ptr_.at(nnode));
 }
 
- //! Iterate over nodes
+//! Iterate over nodes
 template <unsigned Tdim>
-template<typename Func> 
+template <typename Func>
 Func felib::ElementBase<Tdim>::iterate_over_nodes(Func func) {
-    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator begin = vec_nodes_ptr_.begin();
-    typename std::vector<std::shared_ptr<NodeBase<Tdim>>>::iterator   end = vec_nodes_ptr_.end();
-    return std::for_each( begin, end, func );
+  return std::for_each(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), func);
 }
 
-
-//! Iterate over neighbor elements
+//! Iterate over neighbouring elements
 template <unsigned Tdim>
-template<typename Func> 
-Func felib::ElementBase<Tdim>::iterate_over_neighbors(Func func) {
-    typename std::vector<std::shared_ptr<ElementBase<Tdim>>>::iterator begin = vec_neighbors_.begin();
-    typename std::vector<std::shared_ptr<ElementBase<Tdim>>>::iterator   end = vec_neighbors_.end();
-    return std::for_each( begin, end, func );
+template <typename Func>
+Func felib::ElementBase<Tdim>::iterate_over_neighbours(Func func) {
+  return std::for_each(vec_neighbours_.begin(), vec_neighbours_.end(), func);
 }

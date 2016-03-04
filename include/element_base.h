@@ -33,18 +33,28 @@ class felib::ElementBase {
   //! Destructor
   virtual ~ElementBase() {}
 
-  //! pass arguments or call a node base function for a particular node
-  template<typename Func> Func call_node(Func func, const unsigned numNode);
-
   //! Return id of the element
   //! \return id_ id of the element
   unsigned id() const { return id_; }
 
-  //! Iterate over nodes
-  template<typename Func> Func iterate_over_nodes(Func func);
+  //! Call a node base function for a particular node
+  //! \tparam Func Function type
+  //! \param[in] nnode Node number
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func call_function_node(const unsigned& nnode, Func func);
 
-  //! Iterate over neighbor elements
-  template<typename Func> Func iterate_over_neighbors(Func func);
+  //! Iterate over nodes
+  //! \tparam Func Function type
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func iterate_over_nodes(Func func);
+
+  //! Iterate over neighbour elements
+  //! \tparam Func Function type
+  //! \param[in] func Element base function
+  template <typename Func>
+  Func iterate_over_neighbours(Func func);
 
   //! Assign nodes
   //! <param[in] nodes Assign nodes as nodes of the element
@@ -53,7 +63,7 @@ class felib::ElementBase {
 
   // Insert a node pointer at a specific index
   void insert_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr_,
-                 const unsigned& index) {
+                       const unsigned& index) {
     // Check if the node ptr is null and then insert pointer to element at the
     // given index
     // vec_nodes_ptr_.push_back(node_ptr_);
@@ -62,18 +72,17 @@ class felib::ElementBase {
   //! Info
   void info() {
     std::cout << "Element id: " << id_ << "\nnodes: ";
-    for (const auto& node_ptr: vec_nodes_ptr_) 
-        std::cout << node_ptr->id() << ", ";
+    for (const auto& node_ptr : vec_nodes_ptr_)
+      std::cout << node_ptr->id() << ", ";
     std::cout << std::endl;
   }
 
   std::array<double, Tdim> centroid();
-  
+
   virtual double volume() = 0;
-  
+
   virtual double area() = 0;
 
-  
  private:
   //! Copy constructor
   ElementBase(const ElementBase<Tdim>&);
@@ -91,15 +100,15 @@ class felib::ElementBase {
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
 
-  //! vector of neighbor element pointers
-  std::vector<std::shared_ptr<ElementBase<Tdim>>> vec_neighbors_;
+  //! vector of neighbour element pointers
+  std::vector<std::shared_ptr<ElementBase<Tdim>>> vec_neighbours_;
 
   //! element centroid
   std::array<double, Tdim> centroid_;
 
   //! element volume
   double volume_;
-  
+
   //! element area
   double area_;
 };
