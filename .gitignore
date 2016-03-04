@@ -30,3 +30,4 @@ felib
 src/*#
 include/*#
 doc/*
+*.swp*
