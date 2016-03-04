@@ -23,20 +23,19 @@ class felib::QuadrilateralShape : public felib::ShapeFunBase<Tdim, Tnfunctions >
 public:
   // Evaluate shape functions
   //! param[in] xi given local coordinates
-  //! param[out] sfun shape functins at local coordinates xi
-  void evaluate_shape_fun(const std::array<double, Tdim>& xi, 
-                          Eigen::Matrix<double, Tnfunctions, 1>& sfun);
+  //! param[out] shape_fun shape functins at local coordinates xi
+  Eigen::Matrix<double, Tnfunctions, 1> evaluate_shape_fun(
+         const std::array<double, Tdim>& xi);
 
   // Evaluate local gradient of shape functions
   //! param[in] xi given local coordinates
   //! param[out] grad_sfun gradient of shape functions at local coordinates
-  void evaluate_grad_shape_fun(
-         const std::array<double, Tdim>& xi, 
-         Eigen::Matrix<double, Tnfunctions, Tdim>& grad_sfun);
+  Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(
+         const std::array<double, Tdim>& xi);
 
   // Give quadrature points (number is equal to Tnfunctions)
   //! \param[out] qpoints quadrature points in local coordinates
-  void quadrature_points(Eigen::Matrix<double, Tnfunctions, Tdim>& qpoints);
+  Eigen::Matrix<double, Tnfunctions, Tdim> quadrature_points();
 
   // Give quadrature points in local coordinates (p x p rule)
   //! param[in] nquadratures number of quadrature points

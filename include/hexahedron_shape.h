@@ -1,5 +1,5 @@
-#ifndef FELIB_LINESHAPE_H_
-#define FELIB_LINESHAPE_H_
+#ifndef FELIB_HEXAHEDRONSHAPE_H_
+#define FELIB_HEXAHEDRONSHAPE_H_
 
 #include <array>
 #include <eigen3/Eigen/Dense>
@@ -8,28 +8,30 @@
 
 #include "shapefun_base.h"
 
-// Line shape function class derived from Shape Fun Base Class
-//! \shape functions of the 1-D line element
+// Hexahedron shape function class derived from Shape Fun Base Class
+//! \shape functions of the 3-D brick element
 //! \tparam Tdim Dimenstion
 //! \tparam Tnfunctions number of shape functions
 namespace felib {
 template <unsigned Tdim, unsigned Tnfunctions>
-class LineShape;
+class HexahedronShape;
 }
 
 template <unsigned Tdim, unsigned Tnfunctions>
-class felib::LineShape : public felib::ShapeFunBase<Tdim, Tnfunctions> {
+class felib::Hexahedron : public felib::ShapeFunBase<Tdim, Tnfunctions> {
 
  public:
   // Evaluate shape functions
   //! \param[in] xi given local coordinates
   //! \param[out] shape_fun shape functions at given local coordinates
-  Eigen::Matrix<double, Tnfunctions, 1> evaluate_shape_fun(const std::array<double, Tdim>& xi);
+   Eigen::Matrix<double, Tnfunctions, 1> evaluate_shape_fun(
+     const std::array<double, Tdim>& xi);
 
   // Evaluate gradient of shape functions in local coordinates
   //! \param[in] xi given local coordinates
   //! \param[out] gradSfun local gradients of shape functions
-  Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(const std::array<double, Tdim>& xi);
+  Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(
+     const std::array<double, Tdim>& xi);
 
   // Give quadratue points (number is similar to Tnfunctions)
   //! \param[out] qpoints local coordinates of quadrature points
@@ -42,6 +44,6 @@ class felib::LineShape : public felib::ShapeFunBase<Tdim, Tnfunctions> {
   void custom_quadrature_points(Eigen::Matrix<double, nquadratures, Tdim>& qpoints);
 };
 
-#include "line_shape.tcc"
+#include "hexahedron_shape.tcc"
 
-#endif  // FELIB_LINESHAPE_H_
+#endif  // FELIB_HEXAHEDRONSHAPE_H_
