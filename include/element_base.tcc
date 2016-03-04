@@ -6,13 +6,10 @@ std::array<double, Tdim> felib::ElementBase<Tdim>::centroid() {
 
   for (const auto node_ptr : vec_nodes_ptr_) {
     auto coordinates = node_ptr->coordinates();
-    // Use an algorithm instead to iterate over coordinates
-    // and add to centroid
-    for (unsigned i = 0; i < Tdim; ++i) {
-      centroid.at(i) += coordinates.at(i);
-    }
-    // centroid(j) = centroid
+    std::transform(coordinates.begin(), coordinates.end(), centroid.begin(),
+                   centroid.begin(), std::plus<double>());
   }
+  centroid /= vec_nodes_ptr_.size();
   return centroid;
 }
 

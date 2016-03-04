@@ -1,11 +1,12 @@
 #ifndef FELIB_ELEMENT_BASE_H_
 #define FELIB_ELEMENT_BASE_H_
 
+#include <algorithm>
 #include <array>
 #include <iostream>
 #include <limits>
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include "node_base.h"
 
