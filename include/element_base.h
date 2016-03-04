@@ -33,9 +33,18 @@ class felib::ElementBase {
   //! Destructor
   virtual ~ElementBase() {}
 
+  //! pass arguments or call a node base function for a particular node
+  template<typename Func> Func call_node(Func func, const unsigned numNode);
+
   //! Return id of the element
   //! \return id_ id of the element
   unsigned id() const { return id_; }
+
+  //! Iterate over nodes
+  template<typename Func> Func iterate_over_nodes(Func func);
+
+  //! Iterate over neighbor elements
+  template<typename Func> Func iterate_over_neighbors(Func func);
 
   //! Assign nodes
   //! <param[in] nodes Assign nodes as nodes of the element
@@ -64,11 +73,6 @@ class felib::ElementBase {
   
   virtual double area() = 0;
 
-  //! Iterate over nodes
-  template<typename FUNC> FUNC iterate_over_nodes(FUNC func);
-
-  //! Iterate over neighbor elements
-  template<typename FUNC> FUNC iterate_over_neighbors(FUNC func);
   
  private:
   //! Copy constructor
