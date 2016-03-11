@@ -1,11 +1,12 @@
 #ifndef FELIB_ELEMENT_BASE_H_
 #define FELIB_ELEMENT_BASE_H_
 
+#include <algorithm>
 #include <array>
 #include <iostream>
 #include <limits>
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include "node_base.h"
 
@@ -31,9 +32,6 @@ class felib::ElementBase {
     // initialise the size of vector of node pointers and set it to null_ptr
     vec_nodes_ptr_.resize(num_nodes_);
     vec_nodes_ptr_.fill(nullptr);
-    // initialise the size of vector of edge_node pointers and set it to null_ptr
-    vec_edge_nodes_ptr_.resize(num_edge_nodes_);
-    vec_edge_nodes_ptr_.fill(nullptr);
   }
 
   
@@ -45,10 +43,27 @@ class felib::ElementBase {
   //! \return id_ id of the element
   unsigned id() const { return id_; }
 
+  //! Call a node base function for a particular node
+  //! \tparam Func Function type
+  //! \param[in] nnode Node number
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func call_function_node(const unsigned& nnode, Func func);
+
+  //! Iterate over nodes
+  //! \tparam Func Function type
+  //! \param[in] func A node base function
+  template <typename Func>
+  Func iterate_over_nodes(Func func);
+
+  //! Iterate over neighbour elements
+  //! \tparam Func Function type
+  //! \param[in] func Element base function
+  template <typename Func>
+  Func iterate_over_neighbours(Func func);
+
   //! Assign nodes
   //! \param[in] nodes Assign nodes as nodes of the element
-
-  //  std::vector<std::shared_ptr<felib::NodeBase<Tdim>>> vec_nodes_ptr_;
 
   //! Insert a node pointer at a specific index
   //! \param[in] node_ptr Pointer to a node in the element
@@ -74,8 +89,6 @@ class felib::ElementBase {
   bool insert_node_ptr_at(std::shared_ptr<NodeBase<Tdim>>& node_ptr,
                           const unsigned index);
 
-
-
   //! Add edge_node pointers to element base class
   //! \brief Virtual function to add edge_node pointers to the element
   //! \param[in] edge_node_ptr Pointer to an edge_node in the element
@@ -86,14 +99,8 @@ class felib::ElementBase {
   bool insert_edge_node_ptr_at(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr,
                           const unsigned index);
 
-
-  
-
   //! Compute centroid
   std::array<double, Tdim> centroid();
-
-  //! Compute centroid_edge_nodes (based on the edge nodes only)
-  std::array<double, Tdim> centroid_edge_nodes();
   
   //! \brief Return the volume of the element
   //! \detail Return volume in 3D, area in 2D and length in 1D
@@ -119,8 +126,8 @@ class felib::ElementBase {
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
 
-  //! vector of edge_node pointers
-  std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_edge_nodes_ptr_;
+  //! vector of neighbour element pointers
+  std::vector<std::shared_ptr<ElementBase<Tdim>>> vec_neighbours_;
 
   //! element centroid
   std::array<double, Tdim> centroid_;
