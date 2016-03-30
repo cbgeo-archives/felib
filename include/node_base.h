@@ -21,6 +21,8 @@ public:
   //! \param[in] coord coordinates of the node
   NodeBase(const unsigned &id, const std::array<double, Tdim> &coord)
       : id_{id} {
+    // Check if the dimension is between 1 & 3
+    static_assert((Tdim >= 1 && Tdim <= 3), "Invalid global dimension"); 
     coordinates_ = coord;
   };
 

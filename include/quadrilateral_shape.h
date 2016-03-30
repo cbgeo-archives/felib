@@ -1,8 +1,9 @@
 #ifndef FELIB_QUADRILATERALSHAPE_H_
 #define FELIB_QUADRILATERALSHAPE_H_
 
-#include <array>
 #include <eigen3/Eigen/Dense>
+
+#include <array>
 #include <iostream>
 #include <vector>
 
@@ -21,6 +22,12 @@ template <unsigned Tdim, unsigned Tnfunctions>
 class felib::QuadrilateralShape : public felib::ShapeFunBase<Tdim, Tnfunctions > {
 
 public:
+  // Default constructor
+  QuadrilateralShape() : felib::ShapeFunBase<Tdim, Tnfunctions>() {
+    static_assert(Tdim == 2, "Invalid dimension for a quadrilateral element");
+    static_assert((Tnfunctions == 4 || Tnfunctions == 8 || Tnfunctions == 9),
+                  "Invalid shape functions for a quadirlateral element");
+  }
   // Evaluate shape functions
   //! param[in] xi given local coordinates
   //! param[out] shape_fun shape functins at local coordinates xi

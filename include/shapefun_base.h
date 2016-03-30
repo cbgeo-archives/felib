@@ -19,16 +19,16 @@ class ShapeFunBase;
 template <unsigned Tdim, unsigned Tnfunctions>
 class felib::ShapeFunBase {
  public:
-  //! Constructor 
+  //! Constructor
   //! Assign variables to zero
-  ShapeFunBase(){
+  ShapeFunBase() {
     shape_fun = Eigen::Matrix<double, Tnfunctions, 1>::Zero();
     grad_sfun = Eigen::Matrix<double, Tnfunctions, Tdim>::Zero();
     qpoints = Eigen::Matrix<double, Tnfunctions, Tdim>::Zero();
   }
 
   //! Destructor
-  virtual ~ShapeFunBase(){}
+  virtual ~ShapeFunBase() {}
 
   //! Evaluate shape functions at given local coordinates
   //! \param[in] xi given local coordinates
@@ -46,7 +46,7 @@ class felib::ShapeFunBase {
   //! \param[out] qpoints local coordinates of quadrature points
   virtual Eigen::Matrix<double, Tnfunctions, Tdim> quadrature_points() = 0;
 
-protected:
+ protected:
   Eigen::Matrix<double, Tnfunctions, 1> shape_fun;
   Eigen::Matrix<double, Tnfunctions, Tdim> grad_sfun;
   Eigen::Matrix<double, Tnfunctions, Tdim> qpoints;

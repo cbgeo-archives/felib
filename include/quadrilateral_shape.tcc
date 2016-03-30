@@ -56,7 +56,7 @@ template<>
 inline Eigen::Matrix<double, 8, 1> felib::QuadrilateralShape<2, 8>::evaluate_shape_fun(const std::array<double, 2> &xi) {
 
   shape_fun(0) = -0.25 * (1 - xi.at(0)) * (1 - xi.at(1)) * (xi.at(0) + xi.at(1) + 1);
-  shape_(1) =  0.25 * (1 + xi.at(0)) * (1 - xi.at(1)) * (xi.at(0) - xi.at(1) - 1);
+  shape_fun(1) =  0.25 * (1 + xi.at(0)) * (1 - xi.at(1)) * (xi.at(0) - xi.at(1) - 1);
   shape_fun(2) =  0.25 * (1 + xi.at(0)) * (1 + xi.at(1)) * (xi.at(0) + xi.at(1) - 1);
   shape_fun(3) = -0.25 * (1 - xi.at(0)) * (1 + xi.at(1)) * (xi.at(0) - xi.at(1) + 1);
   shape_fun(4) =   0.5 * (1 - (xi.at(0) * xi.at(0))) * (1 - xi.at(1));
@@ -88,10 +88,10 @@ inline Eigen::Matrix<double, 8, 2> felib::QuadrilateralShape<2, 8>::evaluate_gra
   return grad_sfun;
 }
 
-template<>
-inline void felib::QuadrilateralShape<2, 8>::quadrature_points(Eigen::Matrix<double, 8, 2> &qpoints) {
+// template<>
+// inline void felib::QuadrilateralShape<2, 8>::quadrature_points(Eigen::Matrix<double, 8, 2> &qpoints) {
 
-}
+// }
 
 // 9-node Quadrilateral Element
 //! 3       6       2

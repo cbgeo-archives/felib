@@ -1,4 +1,4 @@
-// 8-node (Trilinear) Hexahedral Element
+// 8-node (Trilinear) Hexahedron Element
 //!        7               6       
 //!          0_ _ _ _ _ _0
 //!         /|           /|
@@ -12,7 +12,7 @@
 //!       0_ _ _ _ _ _ 0
 //!     0               1
 template<>
-inline Eigen::Matrix<double, 8, 1> felib::HexahedralShape<3, 8>::evaluate_shape_fun(const std::array<double, 3> &xi) {
+inline Eigen::Matrix<double, 8, 1> felib::HexahedronShape<3, 8>::evaluate_shape_fun(const std::array<double, 3> &xi) {
 
   shape_fun(0) = 0.125 * (1 - xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)); 
   shape_fun(1) = 0.125 * (1 + xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2));
@@ -26,7 +26,7 @@ inline Eigen::Matrix<double, 8, 1> felib::HexahedralShape<3, 8>::evaluate_shape_
 }
 
 template<>
-inline Eigen::Matrix<double, 8, 3> felib::HexahedralShape<3, 8>::evaluate_grad_shape_fun(const std::array<double, 3> &xi) {
+inline Eigen::Matrix<double, 8, 3> felib::HexahedronShape<3, 8>::evaluate_grad_shape_fun(const std::array<double, 3> &xi) {
 
   grad_sfun(0,0) = -0.125 * (1 - xi.at(1)) * (1 - xi.at(2));
   grad_sfun(1,0) =  0.125 * (1 - xi.at(1)) * (1 - xi.at(2));
@@ -57,7 +57,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedralShape<3, 8>::evaluate_grad_s
 
 
 template<>
-inline Eigen::Matrix<double, 8, 3> felib::HexahedralShape<3, 8>::quadrature_points() {
+inline Eigen::Matrix<double, 8, 3> felib::HexahedronShape<3, 8>::quadrature_points() {
 
   qpoints(0,0) = -0.57735; qpoints(0,1) = -0.57735; qpoints(0,2) = -0.57735;
   qpoints(1,0) =  0.57735; qpoints(1,1) = -0.57735; qpoints(1,2) = -0.57735;
@@ -71,7 +71,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedralShape<3, 8>::quadrature_poin
 }
 
 
-// 20-node (Serendipity) Hexahedral Element
+// 20-node (Serendipity) Hexahedron Element
 //!        7       18          6       
 //!          0_ _ _ 0 _ _ _  0
 //!          /|             / |
@@ -87,7 +87,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedralShape<3, 8>::quadrature_poin
 //!       0_ _ _ 0 _ _ _ 0
 //!   0          8         1
 template<>
-inline Eigen::Matrix<double, 20, 1> felib::HexahedralShape<3, 20>::evaluate_shape_fun(const std::array<double, 3> &xi) {
+inline Eigen::Matrix<double, 20, 1> felib::HexahedronShape<3, 20>::evaluate_shape_fun(const std::array<double, 3> &xi) {
 
   shape_fun(0) = -0.125 * (1 - xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)) * (2 + xi.at(0) + xi.at(1) + xi.at(2)); 
   shape_fun(1) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)) * (2 - xi.at(0) + xi.at(1) + xi.at(2));
@@ -97,8 +97,8 @@ inline Eigen::Matrix<double, 20, 1> felib::HexahedralShape<3, 20>::evaluate_shap
   shape_fun(5) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)) * (2 - xi.at(0) + xi.at(1) - xi.at(2));
   shape_fun(6) = -0.125 * (1 + xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2)) * (2 - xi.at(0) - xi.at(1) - xi.at(2));
   shape_fun(7) = -0.125 * (1 - xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2)) * (2 + xi.at(0) - xi.at(1) - xi.at(2));
-  shape_fun(8) = 0.25 * (1 - xi.at(0)*xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2));
-  shape_fun(9) = 0.25 * (1 - xi.at(1)*xi.at(1)) * (1 + xi.at(0)) * (1 - xi.at(2));
+  shape_fun(8) =  0.25 * (1 - xi.at(0)*xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2));
+  shape_fun(9) =  0.25 * (1 - xi.at(1)*xi.at(1)) * (1 + xi.at(0)) * (1 - xi.at(2));
   shape_fun(10) = 0.25 * (1 - xi.at(0)*xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2));
   shape_fun(11) = 0.25 * (1 - xi.at(1)*xi.at(1)) * (1 - xi.at(0)) * (1 - xi.at(2));
   shape_fun(12) = 0.25 * (1 - xi.at(2)*xi.at(2)) * (1 - xi.at(0)) * (1 - xi.at(1));
@@ -113,7 +113,7 @@ inline Eigen::Matrix<double, 20, 1> felib::HexahedralShape<3, 20>::evaluate_shap
 }
 
 template<>
-inline Eigen::Matrix<double, 20, 3> felib::HexahedralShape<3, 20>::evaluate_grad_shape_fun(const std::array<double, 3> &xi) {
+inline Eigen::Matrix<double, 20, 3> felib::HexahedronShape<3, 20>::evaluate_grad_shape_fun(const std::array<double, 3> &xi) {
 
   grad_sfun(0,0) =  0.125 * (2*xi.at(0) + xi.at(1) + xi.at(2) + 1) * (1 - xi.at(1)) * (1 - xi.at(2)); 
   grad_sfun(1,0) = -0.125 * (-2*xi.at(0) + xi.at(1) + xi.at(2) + 1) * (1 - xi.at(1)) * (1 - xi.at(2)); 
@@ -133,7 +133,7 @@ inline Eigen::Matrix<double, 20, 3> felib::HexahedralShape<3, 20>::evaluate_grad
   grad_sfun(15,0) = -0.25 * (1 - xi.at(2)*xi.at(2)) * (1 + xi.at(1));
   grad_sfun(16,0) = -0.5 * xi.at(0) * (1 - xi.at(1)) * (1 + xi.at(2));
   grad_sfun(17,0) =  0.25 * (1 - xi.at(1)*xi.at(1)) * (1 + xi.at(2));
-  grad_sfun(18,0) = - 0.5 * xi.at(0) * (1 + xi.at(1)) * (1 + xi.at(2));
+  grad_sfun(18, 0) = -0.5 * xi.at(0) * (1 + xi.at(1)) * (1 + xi.at(2));
   grad_sfun(19,0) = -0.25 * (1 - xi.at(1)*xi.at(1)) * (1 + xi.at(2));
 
   grad_sfun(0,1) =  0.125 * (xi.at(0) + 2*xi.at(1) + xi.at(2) + 1) * (1 - xi.at(0)) * (1 - xi.at(2)); 
@@ -181,7 +181,7 @@ inline Eigen::Matrix<double, 20, 3> felib::HexahedralShape<3, 20>::evaluate_grad
 }
 
 
-// 27-node (Triquadratic) Hexahedral Element
+// 27-node (Triquadratic) Hexahedron Element
 //!          7           18             6       
 //!            0_ _ _ _ _ 0 _ _ _ _ _ 0
 //!            /|                     /|
