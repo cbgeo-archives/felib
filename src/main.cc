@@ -1,6 +1,6 @@
 #include "node_base.h"
 #include "shapefun_base.h"
-#include "line_shape.h"
+#include "triangle_shape.h"
 
 #include <array>
 #include <iostream>
@@ -14,5 +14,5 @@ int main(int argc, char** argv) {
   auto node = std::make_shared<felib::NodeBase<Dim>>(id, coord);
   node->info();
 
-  auto line = std::make_shared<felib::LineShape<Dim, 2>>();
+  auto triangle = std::make_shared<felib::TriangleShape<Dim, 2>>();
 }
