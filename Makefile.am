@@ -6,7 +6,7 @@ ACLOCAL_AMFLAGS = -I ./m4
 
 AM_LDFLAGS =  $(AM_LFLAGS)
 
-AM_CPPFLAGS = -I include/
+AM_CPPFLAGS = -I include/ $(EIGEN_CPPFLAGS)
 
 # Main Program 
 bin_PROGRAMS 	= felib

@@ -19,10 +19,11 @@ template <unsigned Tdim>
 class felib::NodeBase {
  public:
   // Constructor with id and coordinates
-  //! \param[in] id Node id
+  //! \param[in] id assign as the id_ of the node
   //! \param[in] coord coordinates of the node
   NodeBase(const unsigned& id, const std::array<double, Tdim>& coord)
       : id_{id} {
+    // Check if the dimension is between 1 & 3
     static_assert((Tdim >= 1 && Tdim <= 3), "Invalid global dimension");
     coordinates_ = coord;
   };
@@ -46,8 +47,7 @@ class felib::NodeBase {
   //! Info
   void info() {
     std::cout << "Node id: " << id_ << ", coordinates: ";
-    for (const auto& coord : coordinates_)
-      std::cout << coord << ", ";
+    for (const auto& coord : coordinates_) std::cout << coord << ", ";
     std::cout << std::endl;
   }
 
