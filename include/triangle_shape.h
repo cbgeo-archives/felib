@@ -14,14 +14,14 @@
 //! \tparam Tdim Dimenstion
 //! \tparam Tnfunctions number of shape functions
 namespace felib {
-  template <unsigned Tdim, unsigned Tnfunctions> 
-  class TriangleShape;
+template <unsigned Tdim, unsigned Tnfunctions>
+class TriangleShape;
 }
 
-template <unsigned Tdim, unsigned Tnfunctions> 
-class felib::TriangleShape : public felib::ShapeFunBase<Tdim, Tnfunctions > {
+template <unsigned Tdim, unsigned Tnfunctions>
+class felib::TriangleShape : public felib::ShapeFunBase<Tdim, Tnfunctions> {
 
-public:
+ public:
   // Default constructor
   TriangleShape() : felib::ShapeFunBase<Tdim, Tnfunctions>() {
     static_assert(Tdim == 2, "Invalid dimension for a triangle element");
@@ -32,32 +32,15 @@ public:
   //! param[in] xi given local coordinates
   //! param[out] shape_fun shape functins at local coordinates xi
   Eigen::Matrix<double, Tnfunctions, 1> evaluate_shape_fun(
-         const std::array<double, Tdim>& xi);
+      const std::array<double, Tdim>& xi);
 
   // Evaluate local gradient of shape functions
   //! param[in] xi given local coordinates
   //! param[out] grad_sfun gradient of shape functions at local coordinates
   Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(
-         const std::array<double, Tdim>& xi);
-
-  // Give quadrature points (number is equal to Tnfunctions)
-  //! \param[out] qpoints quadrature points in local coordinates
-  Eigen::Matrix<double, Tnfunctions, Tdim> quadrature_points();
-
-  // Give quadrature points in local coordinates (p x p rule)
-  //! param[in] nquadratures number of quadrature points
-  //! param[out] qpoints quadrature points in local coordinates
-  template<unsigned nquadratures>
-  void custom_quadrature_points(Eigen::Matrix<double, nquadratures, Tdim> &qpoints);
-
-  // Give quadrature points in local coordinates (p x p rule)
-  //! param[in] nquadratures number of quadrature points
-  //! param[out] weights value of each qpoints weight
-  template<unsigned nquadratures>
-  void custom_quadrature_weights(std::array<double, nquadratures> &qweights);
-
+      const std::array<double, Tdim>& xi);
 };
 
 #include "triangle_shape.tcc"
 
-#endif // FELIB_TRIANGLESHAPE_H_
+#endif  // FELIB_TRIANGLESHAPE_H_

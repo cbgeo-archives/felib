@@ -8,11 +8,11 @@
 
 int main(int argc, char** argv) {
   unsigned id = 0;
-  const unsigned Dim = 1;
+  const unsigned Dim = 2;
   std::array<double, Dim> coord = {{0.}};
 
   auto node = std::make_shared<felib::NodeBase<Dim>>(id, coord);
   node->info();
 
-  auto triangle = std::make_shared<felib::TriangleShape<Dim, 2>>();
+  auto triangle = std::make_shared<felib::TriangleShape<Dim, 3>>();
 }
