@@ -38,17 +38,6 @@ class felib::LineShape : public felib::ShapeFunBase<Tdim, Tnfunctions> {
   //! \param[out] gradSfun local gradients of shape functions
   Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(
       const std::array<double, Tdim>& xi);
-
-  // Give quadratue points (number is similar to Tnfunctions)
-  //! \param[out] qpoints local coordinates of quadrature points
-  Eigen::Matrix<double, Tnfunctions, Tdim> quadrature_points();
-
-  // Give quadrature points in local coordinates
-  //! \tparam nquadratures number of quadrature points
-  //! \param[out] qpoints local coordinates of quadrature points
-  template <unsigned nquadratures>
-  void custom_quadrature_points(
-      Eigen::Matrix<double, nquadratures, Tdim>& qpoints);
 };
 
 #include "line_shape.tcc"

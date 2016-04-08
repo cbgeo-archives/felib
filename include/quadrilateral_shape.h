@@ -39,17 +39,6 @@ public:
   //! param[out] grad_sfun gradient of shape functions at local coordinates
   Eigen::Matrix<double, Tnfunctions, Tdim> evaluate_grad_shape_fun(
          const std::array<double, Tdim>& xi);
-
-  // Give quadrature points (number is equal to Tnfunctions)
-  //! \param[out] qpoints quadrature points in local coordinates
-  Eigen::Matrix<double, Tnfunctions, Tdim> quadrature_points();
-
-  // Give quadrature points in local coordinates (p x p rule)
-  //! param[in] nquadratures number of quadrature points
-  //! param[out] qpoints quadrature points in local coordinates
-  template<unsigned nquadratures>
-  void custom_quadrature_points(Eigen::Matrix<double, nquadratures, Tdim> &qpoints);
-
 };
 
 #include "quadrilateral_shape.tcc"

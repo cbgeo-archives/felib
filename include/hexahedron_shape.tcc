@@ -56,20 +56,6 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedronShape<3, 8>::evaluate_grad_s
 }
 
 
-template<>
-inline Eigen::Matrix<double, 8, 3> felib::HexahedronShape<3, 8>::quadrature_points() {
-
-  qpoints(0,0) = -0.57735; qpoints(0,1) = -0.57735; qpoints(0,2) = -0.57735;
-  qpoints(1,0) =  0.57735; qpoints(1,1) = -0.57735; qpoints(1,2) = -0.57735;
-  qpoints(2,0) =  0.57735; qpoints(2,2) =  0.57735; qpoints(2,2) = -0.57735;
-  qpoints(3,0) = -0.57735; qpoints(3,1) =  0.57735; qpoints(3,2) = -0.57735;
-  qpoints(4,0) = -0.57735; qpoints(4,1) = -0.57735; qpoints(4,2) =  0.57735;
-  qpoints(5,0) =  0.57735; qpoints(5,1) = -0.57735; qpoints(5,2) =  0.57735;
-  qpoints(6,0) =  0.57735; qpoints(6,2) =  0.57735; qpoints(6,2) =  0.57735;
-  qpoints(7,0) = -0.57735; qpoints(7,1) =  0.57735; qpoints(7,2) =  0.57735;
-  return qpoints;
-}
-
 
 // 20-node (Serendipity) Hexahedron Element
 //!        7       18          6       
