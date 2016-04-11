@@ -5,7 +5,7 @@
 #include "line_shapefn.h"
 
 //! \brief Check line shapefn class
-TEST_CASE("Line shape function is checked", "[linesf][line][shapefn][1D]") {
+TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
   const unsigned Dim = 1;
   const double Tolerance = 1.E-7;
 
