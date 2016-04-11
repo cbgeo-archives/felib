@@ -9,9 +9,9 @@
 
 #include "shapefn_base.h"
 
-// Quadrilateral shape function class derived from ShapeFnBase class
+//! Quadrilateral shape function class derived from ShapeFnBase class
 //! \brief Shape functions of a quadrilateral element
-//! \tparam Tdim Dimenstion
+//! \tparam Tdim Dimension
 //! \tparam Tnfunctions Number of shape functions
 namespace felib {
   template <unsigned Tdim, unsigned Tnfunctions> 
@@ -22,22 +22,22 @@ template <unsigned Tdim, unsigned Tnfunctions>
 class felib::QuadrilateralShapeFn : public felib::ShapeFnBase<Tdim, Tnfunctions > {
 
 public:
-  // Default constructor
+  //! Default constructor
   QuadrilateralShapeFn() : felib::ShapeFnBase<Tdim, Tnfunctions>() {
     static_assert(Tdim == 2, "Invalid dimension for a quadrilateral element");
     static_assert((Tnfunctions == 4 || Tnfunctions == 8 || Tnfunctions == 9),
                   "Invalid shape functions for a quadirlateral element");
   }
 
-  // Evaluate the shape functions
-  //! \param[in] xi given local coordinates
-  //! \param[out] shape_fn_ shape functions at given local coordinates
+  //! Evaluate the shape functions
+  //! \param[in] xi Local coordinates
+  //! \param[out] shapefn_ Shape functions at the given local coordinates
    Eigen::Matrix<double, Tnfunctions, 1> shapefn(
          const std::array<double, Tdim>& xi);
 
-  // Evaluate the gradient of shape functions in local coordinates
-  //! \param[in] xi given local coordinates
-  //! \param[out] grad_shapefn_ local gradients of shape functions
+  //! Evaluate the gradient of shape functions in local coordinates
+  //! \param[in] xi Local coordinates
+  //! \param[out] grad_shapefn_ Local gradients of shape functions
   Eigen::Matrix<double, Tnfunctions, Tdim> grad_shapefn(
          const std::array<double, Tdim>& xi);
 };

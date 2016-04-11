@@ -1,6 +1,6 @@
 #include "node_base.h"
 #include "shapefn_base.h"
-#include "quadrilateral_shapefn.h"
+#include "hexahedron_shapefn.h"
 #include "line_quadrature.h"
 
 #include <array>
@@ -9,14 +9,22 @@
 
 int main(int argc, char** argv) {
   unsigned id = 0;
-  const unsigned Dim = 2;
+  const unsigned Dim = 3;
   std::array<double, Dim> coord = {{0.}};
 
   auto node = std::make_shared<felib::NodeBase<Dim>>(id, coord);
   node->info();
 
-  auto quad = std::make_shared<felib::QuadrilateralShapeFn<Dim, 9>>();
+  auto hex = std::make_shared<felib::HexahedronShapeFn<Dim, 20>>();
 
+  auto sf = hex->shapefn(coord);
+
+  std::cout << sf << std::endl;
+  
+  auto grad = hex->grad_shapefn(coord);
+
+  std::cout << grad << std::endl;
+  
   // auto quad = std::make_shared<felib::LineQuadrature<Dim, 2>>();
 
   // auto points = quad->quadratures();
