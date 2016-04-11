@@ -86,14 +86,16 @@ inline Eigen::Matrix<double, 20, 1> felib::HexahedronShapeFn<3, 20>::shapefn(
                 (2 - xi.at(0) - xi.at(1) + xi.at(2));
   shapefn_(3) = -0.125 * (1 - xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2)) *
                 (2 + xi.at(0) - xi.at(1) + xi.at(2));
-  shapefn_(4) = -0.125 * (1 - xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)) *
+  shapefn_(4) = -0.125 * (1 - xi.at(0)) * (1 - xi.at(1)) * (1 + xi.at(2)) *
                 (2 + xi.at(0) + xi.at(1) - xi.at(2));
-  shapefn_(5) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2)) *
+  shapefn_(5) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(1)) * (1 + xi.at(2)) *
                 (2 - xi.at(0) + xi.at(1) - xi.at(2));
-  shapefn_(6) = -0.125 * (1 + xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2)) *
+  shapefn_(6) = -0.125 * (1 + xi.at(0)) * (1 + xi.at(1)) * (1 + xi.at(2)) *
                 (2 - xi.at(0) - xi.at(1) - xi.at(2));
-  shapefn_(7) = -0.125 * (1 - xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2)) *
+  shapefn_(7) = -0.125 * (1 - xi.at(0)) * (1 + xi.at(1)) * (1 + xi.at(2)) *
                 (2 + xi.at(0) - xi.at(1) - xi.at(2));
+
+
   shapefn_(8) =
       0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2));
   shapefn_(9) =
