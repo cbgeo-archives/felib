@@ -19,4 +19,5 @@ check_PROGRAMS  = felibtest
 felibtest_SOURCES = tests/test.cc \
 		    tests/node_base_test.cc \
 		    tests/line_shapefn_test.cc \
-		    tests/quadrilateral_shapefn_test.cc
+		    tests/quadrilateral_shapefn_test.cc \
+		    tests/triangle_shapefn_test.cc
