@@ -38,6 +38,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedronShapeFn<3, 8>::grad_shapefn(
   grad_shapefn_(5, 0) = 0.125 * (1 - xi.at(1)) * (1 + xi.at(2));
   grad_shapefn_(6, 0) = 0.125 * (1 + xi.at(1)) * (1 + xi.at(2));
   grad_shapefn_(7, 0) = -0.125 * (1 + xi.at(1)) * (1 + xi.at(2));
+  
   grad_shapefn_(0, 1) = -0.125 * (1 - xi.at(0)) * (1 - xi.at(2));
   grad_shapefn_(1, 1) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(2));
   grad_shapefn_(2, 1) = 0.125 * (1 + xi.at(0)) * (1 - xi.at(2));
@@ -46,6 +47,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedronShapeFn<3, 8>::grad_shapefn(
   grad_shapefn_(5, 1) = -0.125 * (1 + xi.at(0)) * (1 + xi.at(2));
   grad_shapefn_(6, 1) = 0.125 * (1 + xi.at(0)) * (1 + xi.at(2));
   grad_shapefn_(7, 1) = 0.125 * (1 - xi.at(0)) * (1 + xi.at(2));
+
   grad_shapefn_(0, 2) = -0.125 * (1 - xi.at(0)) * (1 - xi.at(1));
   grad_shapefn_(1, 2) = -0.125 * (1 + xi.at(0)) * (1 - xi.at(1));
   grad_shapefn_(2, 2) = -0.125 * (1 + xi.at(0)) * (1 + xi.at(1));
