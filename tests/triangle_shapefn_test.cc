@@ -22,12 +22,17 @@ TEST_CASE("Triangle shape functions are checked",
       auto shapefn = trianglesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+      
       REQUIRE(shapefn(0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.0).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = trianglesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+      
       REQUIRE(gradsf(0, 0) == Approx(-1.0).epsilon(Tolerance));
       REQUIRE(gradsf(1, 0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(gradsf(2, 0) == Approx(0.0).epsilon(Tolerance));
@@ -43,12 +48,17 @@ TEST_CASE("Triangle shape functions are checked",
       auto shapefn = trianglesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.5).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.5).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = trianglesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
       REQUIRE(gradsf(0, 0) == Approx(-1.0).epsilon(Tolerance));
       REQUIRE(gradsf(1, 0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(gradsf(2, 0) == Approx(0.0).epsilon(Tolerance));
@@ -71,6 +81,8 @@ TEST_CASE("Triangle shape functions are checked",
       auto shapefn = trianglesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.0).epsilon(Tolerance));
@@ -80,6 +92,9 @@ TEST_CASE("Triangle shape functions are checked",
 
       // Check gradient of shape functions
       auto gradsf = trianglesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
       REQUIRE(gradsf(0, 0) == Approx(-3.0).epsilon(Tolerance));
       REQUIRE(gradsf(1, 0) == Approx(-1.0).epsilon(Tolerance));
       REQUIRE(gradsf(2, 0) == Approx(0.0).epsilon(Tolerance));
@@ -101,6 +116,8 @@ TEST_CASE("Triangle shape functions are checked",
       auto shapefn = trianglesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.0).epsilon(Tolerance));
@@ -110,6 +127,9 @@ TEST_CASE("Triangle shape functions are checked",
 
       // Check gradient of shape functions
       auto gradsf = trianglesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
       REQUIRE(gradsf(0, 0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(gradsf(1, 0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(gradsf(2, 0) == Approx(0.0).epsilon(Tolerance));

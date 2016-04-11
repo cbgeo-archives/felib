@@ -20,11 +20,17 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.5).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.5).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
+
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
@@ -35,11 +41,17 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
+
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
@@ -50,11 +62,17 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(1.0).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
+
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
@@ -73,12 +91,18 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(1.0).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
+
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(0.0).epsilon(Tolerance));
@@ -90,12 +114,18 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(1.).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(0.).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
+
       REQUIRE(gradsf(0) == Approx(-1.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(2.0).epsilon(Tolerance));
@@ -107,12 +137,17 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
+      REQUIRE(shapefn.size() == Nfunctions);
+
       REQUIRE(shapefn(0) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(shapefn(1) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(shapefn(2) == Approx(0.0).epsilon(Tolerance));
 
       // Check gradient of shape functions
       auto gradsf = linesf->grad_shapefn(coords);
+      REQUIRE(gradsf.rows() == Nfunctions);
+      REQUIRE(gradsf.cols() == Dim);
+
       REQUIRE(gradsf(0) == Approx(0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(1.5).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(-2.0).epsilon(Tolerance));
