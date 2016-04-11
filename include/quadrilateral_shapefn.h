@@ -19,7 +19,7 @@ namespace felib {
 }
 
 template <unsigned Tdim, unsigned Tnfunctions> 
-class felib::QuadrilateralShapeFn : public felib::ShapeFunBase<Tdim, Tnfunctions > {
+class felib::QuadrilateralShapeFn : public felib::ShapeFnBase<Tdim, Tnfunctions > {
 
 public:
   // Default constructor
@@ -32,7 +32,7 @@ public:
   // Evaluate the shape functions
   //! \param[in] xi given local coordinates
   //! \param[out] shape_fn_ shape functions at given local coordinates
-   Eigen::Matrix<double, Tnfunctions, 1> shape_fn(
+   Eigen::Matrix<double, Tnfunctions, 1> shapefn(
          const std::array<double, Tdim>& xi);
 
   // Evaluate the gradient of shape functions in local coordinates
