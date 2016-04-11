@@ -8,7 +8,7 @@
 
 #include "shapefn_base.h"
 
-// Line shape function class derived from Shape Fun Base Class
+// Line shape function class derived from shape function base class
 //! \brief Shape functions for a 1-D line element
 //! \tparam Tdim Dimension
 //! \tparam Tnfunctions Number of shape functions

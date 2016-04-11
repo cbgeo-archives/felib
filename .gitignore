@@ -3,6 +3,7 @@ Makefile.in
 configure
 Makefile
 .deps/*
+tests/.deps*
 src/.deps*
 config.log
 config.status
@@ -24,6 +25,7 @@ configure.scan
 *.tcc~
 *.tcc#
 felib
+felibtest
 *.gcda*
 *.gcno*
 *coverage.info*
