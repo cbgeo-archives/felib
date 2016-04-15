@@ -3,9 +3,9 @@ felib::QuadrilateralQuadrature<Tdim, Tnquadratures>::QuadrilateralQuadrature()
     : felib::QuadratureBase<Tdim, Tnquadratures>() {
   
   static_assert(Tdim == 2, "Invalid dimension for a quadrilateral element");
-  static_assert((Tnquadratures == 1) || (Tnquadratures == 4) ||
-                    (Tnquadratures == 9),
-                "Invalid number of quadratures");
+  static_assert(
+    ((Tnquadratures == 1) || (Tnquadratures == 4) || (Tnquadratures == 9)),
+      "Invalid number of quadratures");
 
   if (Tnquadratures == 1) {
     // Define quadratures
@@ -64,7 +64,7 @@ felib::QuadrilateralQuadrature<Tdim, Tnquadratures>::QuadrilateralQuadrature()
     qpoints_(7, 1) =  0;
 
     qpoints_(8, 0) =  0;
-    qpoints_(9, 1) =  0;
+    qpoints_(8, 1) =  0;
 
     
     weights_.at(0) = Val_25_by_81;

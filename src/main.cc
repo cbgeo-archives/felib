@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
   // std::cout << grad << std::endl;
 
-  auto quad = std::make_shared<felib::QuadrilateralQuadrature<Dim, 1>>();
+  auto quad = std::make_shared<felib::QuadrilateralQuadrature<Dim, 9>>();
 
   auto points = quad->quadratures();
 
