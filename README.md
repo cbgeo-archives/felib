@@ -13,3 +13,14 @@
 2. make clean && make -jN (where N is the number of cores)
 
 3. Run felib `./felib`
+
+## Run  test cases
+
+0. Run `autoreconf -fi`, if `configure` script is missing.
+
+1. Run `./configure`
+
+2. `make clean && make check -jN` (where N is the number of cores)
+
+3. Run felibtest `./felibtest`
+

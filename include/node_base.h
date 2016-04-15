@@ -21,7 +21,7 @@ class felib::NodeBase {
   // Constructor with id and coordinates
   //! \param[in] id assign as the id_ of the node
   //! \param[in] coord coordinates of the node
-  NodeBase(const unsigned& id, const std::array<double, Tdim>& coord)
+  NodeBase(const int& id, const std::array<double, Tdim>& coord)
       : id_{id} {
     // Check if the dimension is between 1 & 3
     static_assert((Tdim >= 1 && Tdim <= 3), "Invalid global dimension");
@@ -32,7 +32,7 @@ class felib::NodeBase {
   virtual ~NodeBase(){};
 
   //! Return id of the node
-  unsigned id() const { return id_; }
+  int id() const { return id_; }
 
   //! Assign coordinates
   //! \param[in] coord Assign coord as coordinates of the node
@@ -60,7 +60,7 @@ class felib::NodeBase {
 
  protected:
   //! node id
-  unsigned id_;
+  int id_;
 
   //! nodal coordinates
   std::array<double, Tdim> coordinates_;

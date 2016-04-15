@@ -1,24 +1,21 @@
-#ifndef FELIB_LINEQUADRATURE_H_
-#define FELIB_LINEQUADRATURE_H_
+#ifndef FELIB_LINE_QUADRATURE_H_
+#define FELIB_LINE_QUADRATURE_H_
 
-#include <array>
 #include <eigen3/Eigen/Dense>
-#include <iostream>
+
 #include <vector>
 
 #include "quadrature_base.h"
-
-// Line quadrature class derived from quadrature base class
-//! Quadrature points for a line element
-//! \tparam Tdim Dimenstion
-//! \tparam Tnquadratures number of quadratures
-
 
 namespace felib {
 template <unsigned Tdim, unsigned Tnquadratures>
 class LineQuadrature;
 }
 
+// Line quadrature class derived from quadrature base class
+//! \brief Quadrature points for a line element
+//! \tparam Tdim Dimenstion
+//! \tparam Tnquadratures number of quadratures
 template <unsigned Tdim, unsigned Tnquadratures>
 class felib::LineQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> {
 
@@ -32,8 +29,8 @@ class felib::LineQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> 
     qpoints_(0) = -0.577350;
     qpoints_(1) =  0.577350;
 
-    weights_(0) = 1.;
-    weights_(1) = 1.;
+    weights_.at(0) = 1.;
+    weights_.at(1) = 1.;
   }
 
  private:
@@ -41,4 +38,4 @@ class felib::LineQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> 
   using QuadratureBase<Tdim, Tnquadratures>::weights_;
 };
 
-#endif  // FELIB_LINEQUADRATURE_H_
+#endif  // FELIB_LINE_QUADRATURE_H_
