@@ -16,67 +16,66 @@ felib::QuadrilateralQuadrature<Tdim, Tnquadratures>::QuadrilateralQuadrature()
     
   } else if (Tnquadratures == 4) {
     // Define quadratures
-    const double A = 0.577350;
-    const double W = 1.;
+    const double Val_1_by_sqrt3 = 1./std::sqrt(3.);
+    
+    qpoints_(0, 0) = -Val_1_by_sqrt3;
+    qpoints_(0, 1) = -Val_1_by_sqrt3;
+    qpoints_(1, 0) =  Val_1_by_sqrt3;
+    qpoints_(1, 1) = -Val_1_by_sqrt3;
+    qpoints_(2, 0) =  Val_1_by_sqrt3;
+    qpoints_(2, 1) =  Val_1_by_sqrt3;
+    qpoints_(3, 0) = -Val_1_by_sqrt3;
+    qpoints_(3, 1) =  Val_1_by_sqrt3;
 
-    qpoints_(0, 0) = -A;
-    qpoints_(0, 1) = -A;
-    qpoints_(1, 0) =  A;
-    qpoints_(1, 1) = -A;
-    qpoints_(2, 0) =  A;
-    qpoints_(2, 1) =  A;
-    qpoints_(3, 0) = -A;
-    qpoints_(3, 1) =  A;
-
-    weights_.at(0) = W;
-    weights_.at(1) = W;
-    weights_.at(2) = W;
-    weights_.at(3) = W;
+    weights_.at(0) = 1.;
+    weights_.at(1) = 1.;
+    weights_.at(2) = 1.;
+    weights_.at(3) = 1.;
     
   } else if (Tnquadratures == 9) {
 
-    const double A  = 0.774597;
-    const double W1 = 0.308642;
-    const double W2 = 0.493827;
-    const double W3 = 0.790123;
+    const double Val_sqrt_3by5  = std::sqrt(3./5.);
+    const double Val_25_by_81 = 25./81.;
+    const double Val_40_by_81 = 40./81.;
+    const double Val_64_by_81 = 64./81.;
     
-    qpoints_(0, 0) = -A;
-    qpoints_(0, 1) = -A;
+    qpoints_(0, 0) = -Val_sqrt_3by5;
+    qpoints_(0, 1) = -Val_sqrt_3by5;
     
-    qpoints_(1, 0) =  A;
-    qpoints_(1, 1) = -A;
+    qpoints_(1, 0) =  Val_sqrt_3by5;
+    qpoints_(1, 1) = -Val_sqrt_3by5;
 
-    qpoints_(2, 0) =  A;
-    qpoints_(2, 1) =  A;
+    qpoints_(2, 0) =  Val_sqrt_3by5;
+    qpoints_(2, 1) =  Val_sqrt_3by5;
 
-    qpoints_(3, 0) = -A;
-    qpoints_(3, 1) =  A;
+    qpoints_(3, 0) = -Val_sqrt_3by5;
+    qpoints_(3, 1) =  Val_sqrt_3by5;
 
     qpoints_(4, 0) =  0;
-    qpoints_(4, 1) = -A;
+    qpoints_(4, 1) = -Val_sqrt_3by5;
 
-    qpoints_(5, 0) =  A;
+    qpoints_(5, 0) =  Val_sqrt_3by5;
     qpoints_(5, 1) =  0;
     
     qpoints_(6, 0) =  0;
-    qpoints_(6, 1) =  A;
+    qpoints_(6, 1) =  Val_sqrt_3by5;
 
-    qpoints_(7, 0) = -A;
+    qpoints_(7, 0) = -Val_sqrt_3by5;
     qpoints_(7, 1) =  0;
 
     qpoints_(8, 0) =  0;
     qpoints_(9, 1) =  0;
 
     
-    weights_.at(0) = W1;
-    weights_.at(1) = W1;
-    weights_.at(2) = W1;
-    weights_.at(3) = W1;
-    weights_.at(4) = W2;
-    weights_.at(5) = W2;
-    weights_.at(6) = W2;
-    weights_.at(7) = W2;
-    weights_.at(8) = W3;
+    weights_.at(0) = Val_25_by_81;
+    weights_.at(1) = Val_25_by_81;
+    weights_.at(2) = Val_25_by_81;
+    weights_.at(3) = Val_25_by_81;
+    weights_.at(4) = Val_40_by_81;
+    weights_.at(5) = Val_40_by_81;
+    weights_.at(6) = Val_40_by_81;
+    weights_.at(7) = Val_40_by_81;
+    weights_.at(8) = Val_64_by_81;
 
     }
 }

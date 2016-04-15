@@ -6,7 +6,7 @@
 
 //! \brief Check hexahedron shapefn class
 TEST_CASE("Hexahedron shape functions are checked",
-          "[hexsf][hex][shapefn][2D]") {
+          "[hexsf][hex][shapefn][3D]") {
   const unsigned Dim = 3;
   const double Tolerance = 1.E-7;
 
