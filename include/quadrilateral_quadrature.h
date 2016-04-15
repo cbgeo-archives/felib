@@ -13,13 +13,15 @@ class QuadrilateralQuadrature;
 }
 
 // Quadrilateral quadrature class derived from quadrature base class
-//! Quadrature points for a quadrilateral element
-//! \tparam Tdim Dimenstion
+//! \brief Quadrature points for a quadrilateral element
+//! \tparam Tdim Dimension
 //! \tparam Tnquadratures number of quadratures
 template <unsigned Tdim, unsigned Tnquadratures>
-class felib::QuadrilateralQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> {
+class felib::QuadrilateralQuadrature
+    : public felib::QuadratureBase<Tdim, Tnquadratures> {
 
-public:
+ public:
+  // Default constructor
   QuadrilateralQuadrature();
 
  private:
