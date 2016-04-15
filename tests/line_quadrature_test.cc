@@ -26,7 +26,7 @@ TEST_CASE("Line quadratures are checked",
     REQUIRE(points.cols() == 1);
 
     // Check quadrature points
-    REQUIRE(points(0, 0) == 0);
+    REQUIRE(points(0, 0) == Approx(0.).epsilon(Tolerance));
 
     // Check weights
     auto weights = quad->weights();
