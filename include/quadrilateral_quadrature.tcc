@@ -2,7 +2,7 @@ template <unsigned Tdim, unsigned Tnquadratures>
 felib::QuadrilateralQuadrature<Tdim, Tnquadratures>::QuadrilateralQuadrature()
     : felib::QuadratureBase<Tdim, Tnquadratures>() {
   
-  static_assert(Tdim == 2, "Invalid dimension for a tetrahedron element");
+  static_assert(Tdim == 2, "Invalid dimension for a quadrilateral element");
   static_assert((Tnquadratures == 1) || (Tnquadratures == 4) ||
                     (Tnquadratures == 9),
                 "Invalid number of quadratures");
