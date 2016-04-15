@@ -23,14 +23,27 @@ class felib::LineQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> 
   // Default constructor
   LineQuadrature() : felib::QuadratureBase<Tdim, Tnquadratures>() {
     static_assert(Tdim == 1, "Invalid dimension for a 1D element");
-    static_assert((Tnquadratures == 2), "Invalid number of quadratures");
+    static_assert((Tnquadratures == 1 || Tnquadratures == 2), "Invalid number of quadratures");
 
-    // Define quadratures
-    qpoints_(0) = -0.577350;
-    qpoints_(1) =  0.577350;
+    // Single point quadrature
+    if (Tnquadratures == 1) {
 
-    weights_.at(0) = 1.;
-    weights_.at(1) = 1.;
+      // Define quadratures
+      qpoints_(0) = 0.;
+
+      // Define weights
+      weights_.at(0) = 2.;
+
+    } else if (Tnquadratures == 2) {
+      // Two point quadrature
+      // Define quadratures
+      qpoints_(0) = -0.57735026919;
+      qpoints_(1) = 0.57735026919;
+
+      // Define weights
+      weights_.at(0) = 1.;
+      weights_.at(1) = 1.;
+    }
   }
 
  private:
