@@ -23,4 +23,5 @@ felibtest_SOURCES = tests/test.cc \
 		    tests/quadrilateral_shapefn_test.cc \
 		    tests/hexahedron_shapefn_test.cc \
 		    tests/line_quadrature_test.cc \
+		    tests/triangle_quadrature_test.cc 
 		    tests/quadrilateral_quadrature_test.cc 
