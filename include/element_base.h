@@ -140,6 +140,7 @@ class felib::ElementBase {
   felib::ShapeFnBase<Tdim, Tnumnodes>* shapefn_base_ptr_;
   //! quadrature points base class pointer
   felib::QuadratureBase<Tdim, Tnquadratures>* quadrature_ptr_;
+
 };
 
 #include "element_base.tcc"

@@ -2,6 +2,8 @@
 #include "shapefn_base.h"
 #include "hexahedron_shapefn.h"
 #include "quadrilateral_quadrature.h"
+#include "element_base.h"
+
 
 #include <array>
 #include <iostream>
@@ -9,6 +11,7 @@
 
 int main(int argc, char** argv) {
   unsigned id = 0;
+
   const unsigned Dim = 2;
   std::array<double, Dim> coord = {{0.}};
 

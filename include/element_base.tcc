@@ -28,8 +28,7 @@ bool felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::insert_node_ptr(
 //! Call a node base function for a particular node
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
 template <typename Func>
-Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::call_function_node(const unsigned& nnode,
-                                                  Func func) {
+Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::call_function_node(const unsigned& nnode, Func func) {
   return func(vec_nodes_ptr_.at(nnode));
 }
 
@@ -37,6 +36,7 @@ Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::call_function_node(cons
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
 template <typename Func>
 Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::iterate_over_nodes(Func func) {
+
   return std::for_each(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), func);
 }
 
@@ -44,5 +44,6 @@ Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::iterate_over_nodes(Func
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
 template <typename Func>
 Func felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::iterate_over_neighbours(Func func) {
+
   return std::for_each(vec_neighbours_.begin(), vec_neighbours_.end(), func);
 }

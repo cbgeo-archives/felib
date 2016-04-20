@@ -1,5 +1,5 @@
-#ifndef FELIB_SRC_NODE_BASE_H_
-#define FELIB_SRC_NODE_BASE_H_
+#ifndef FELIB_NODE_BASE_H_
+#define FELIB_NODE_BASE_H_
 
 #include <array>
 #include <iostream>
@@ -19,7 +19,7 @@ template <unsigned Tdim>
 class felib::NodeBase {
  public:
   // Constructor with id and coordinates
-  //! \param[in] id assign as the id_ of the node
+  //! \param[in] id Node id
   //! \param[in] coord coordinates of the node
   NodeBase(const int& id, const std::array<double, Tdim>& coord)
       : id_{id} {
@@ -66,4 +66,5 @@ class felib::NodeBase {
   std::array<double, Tdim> coordinates_;
 };
 
-#endif  // FELIB_SRC_NODE_BASE_H_
+#endif // FELIB_NODE_BASE_H_
+

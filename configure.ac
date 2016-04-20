@@ -33,7 +33,7 @@ AX_CXX_COMPILE_STDCXX_11([ext],[mandatory])
 EIGEN_PATH( , , AC_MSG_ERROR(Need path to Eigen))
 
 # Enable silent rules for build
-AM_SILENT_RULES([yes])
+AM_SILENT_RULES([no])
 
 # Checks for header files and functions.
 AC_HEADER_STDC
