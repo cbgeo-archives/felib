@@ -35,9 +35,9 @@ class felib::ElementBase {
       : id_{id}, num_nodes_{num_nodes} {
     // initialise the size of vector of node pointers and set it to null_ptr
     vec_nodes_ptr_.resize(num_nodes_);
-    vec_nodes_ptr_.fill(nullptr);
-    shapefn_base_ptr_ = NULL;
-    quadrature_ptr_ = NULL;
+    // vec_nodes_ptr_.fill(nullptr);
+    // shapefn_ptr_ = nullptr;
+    // quadrature_ptr_ = nullptr;
   }
 
   
@@ -137,9 +137,9 @@ class felib::ElementBase {
   //! element volume
   double volume_;
   //! shape function base class pointer
-  felib::ShapeFnBase<Tdim, Tnumnodes>* shapefn_base_ptr_;
+  std::unique_ptr<felib::ShapeFnBase<Tdim, Tnumnodes>> shapefn_ptr_;
   //! quadrature points base class pointer
-  felib::QuadratureBase<Tdim, Tnquadratures>* quadrature_ptr_;
+  std::unique_ptr<felib::QuadratureBase<Tdim, Tnquadratures>> quadrature_ptr_;
 
 };
 
