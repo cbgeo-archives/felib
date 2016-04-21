@@ -1,9 +1,11 @@
 #ifndef FELIB_QUADRATURE_BASE_H_
 #define FELIB_QUADRATURE_BASE_H_
 
-#include <array>
 #include <eigen3/Eigen/Dense>
+
+#include <algorithm>
 #include <iostream>
+#include <limits>
 #include <vector>
 
 namespace felib {
@@ -22,8 +24,9 @@ class felib::QuadratureBase {
   //! Constructor
   //! Assign variables to zero
   QuadratureBase() {
-    qpoints_ = Eigen::Matrix<double, Tnquadratures, Tdim>::Zero();
-    weights_ = Eigen::Matrix<double, Tnquadratures, Tdim>::Zero();
+    qpoints_.fill(std::numeric_limits<double>::quiet_NaN());
+    weights_.resize(Tnquadratures);
+    std::fill(weights_.begin(), weights_.end(), std::numeric_limits<double>::quiet_NaN());
   }
 
   //! Destructor
@@ -35,11 +38,11 @@ class felib::QuadratureBase {
   
   //! Return weights
   //! \param[out] weights Weights for quadrature points
-  Eigen::Matrix<double, Tnquadratures, Tdim> weights() { return weights_; }
+  std::vector<double> weights() { return weights_; }
 
  protected:
   Eigen::Matrix<double, Tnquadratures, Tdim> qpoints_;
-  Eigen::Matrix<double, Tnquadratures, Tdim> weights_;
+  std::vector<double> weights_;
 };
 
 #endif  // FELIB_QUADRATURE_BASE_H_
