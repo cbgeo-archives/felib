@@ -38,7 +38,7 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(weights.size() == 1);
 
     // Check weights
-    REQUIRE(weights.at(0) == Approx(1./6.).epsilon(Tolerance));
+    REQUIRE(weights.at(0) == Approx(1. / 6.).epsilon(Tolerance));
   }
 
   //! Check for four quadrature points
@@ -59,19 +59,18 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(points(0, 0) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(0, 1) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(0, 2) == Approx(+0.138197).epsilon(Tolerance));
-    
+
     REQUIRE(points(1, 0) == Approx(+0.585410).epsilon(Tolerance));
     REQUIRE(points(1, 1) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(1, 2) == Approx(+0.138197).epsilon(Tolerance));
-    
+
     REQUIRE(points(2, 0) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(2, 1) == Approx(+0.585410).epsilon(Tolerance));
     REQUIRE(points(2, 2) == Approx(+0.138197).epsilon(Tolerance));
-    
+
     REQUIRE(points(3, 0) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(3, 1) == Approx(+0.138197).epsilon(Tolerance));
     REQUIRE(points(3, 2) == Approx(+0.585410).epsilon(Tolerance));
-    
 
     // Check weights
     auto weights = quad->weights();
@@ -80,20 +79,17 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(weights.size() == 4);
 
     // Check weights
-    REQUIRE(weights.at(0) == Approx(1./24.).epsilon(Tolerance));
-    REQUIRE(weights.at(1) == Approx(1./24.).epsilon(Tolerance));
-    REQUIRE(weights.at(2) == Approx(1./24.).epsilon(Tolerance));
-    REQUIRE(weights.at(3) == Approx(1./24.).epsilon(Tolerance));
+    REQUIRE(weights.at(0) == Approx(1. / 24.).epsilon(Tolerance));
+    REQUIRE(weights.at(1) == Approx(1. / 24.).epsilon(Tolerance));
+    REQUIRE(weights.at(2) == Approx(1. / 24.).epsilon(Tolerance));
+    REQUIRE(weights.at(3) == Approx(1. / 24.).epsilon(Tolerance));
   }
-
-
-
 
   //! Check for five quadrature points
   SECTION("Tetrahedron with five quadratures") {
     const unsigned Nquadratures = 5;
 
-   auto quad =
+    auto quad =
         std::make_shared<felib::TetrahedronQuadrature<Dim, Nquadratures>>();
 
     // Check quadratures
@@ -104,26 +100,25 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(points.cols() == 3);
 
     // Check quadrature points
-    REQUIRE(points(0, 0) == Approx(+1./4.).epsilon(Tolerance));
-    REQUIRE(points(0, 1) == Approx(+1./4.).epsilon(Tolerance));
-    REQUIRE(points(0, 2) == Approx(+1./4.).epsilon(Tolerance));
-    
-    REQUIRE(points(1, 0) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(1, 1) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(1, 2) == Approx(+1./6.).epsilon(Tolerance));
-    
-    REQUIRE(points(2, 0) == Approx(+1./2.).epsilon(Tolerance));
-    REQUIRE(points(2, 1) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(2, 2) == Approx(+1./6.).epsilon(Tolerance));
-    
-    REQUIRE(points(3, 0) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(3, 1) == Approx(+1./2.).epsilon(Tolerance));
-    REQUIRE(points(3, 2) == Approx(+1./6.).epsilon(Tolerance));
+    REQUIRE(points(0, 0) == Approx(+1. / 4.).epsilon(Tolerance));
+    REQUIRE(points(0, 1) == Approx(+1. / 4.).epsilon(Tolerance));
+    REQUIRE(points(0, 2) == Approx(+1. / 4.).epsilon(Tolerance));
 
-    REQUIRE(points(4, 0) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(4, 1) == Approx(+1./6.).epsilon(Tolerance));
-    REQUIRE(points(4, 2) == Approx(+1./2.).epsilon(Tolerance));
-    
+    REQUIRE(points(1, 0) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(1, 1) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(1, 2) == Approx(+1. / 6.).epsilon(Tolerance));
+
+    REQUIRE(points(2, 0) == Approx(+1. / 2.).epsilon(Tolerance));
+    REQUIRE(points(2, 1) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(2, 2) == Approx(+1. / 6.).epsilon(Tolerance));
+
+    REQUIRE(points(3, 0) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(3, 1) == Approx(+1. / 2.).epsilon(Tolerance));
+    REQUIRE(points(3, 2) == Approx(+1. / 6.).epsilon(Tolerance));
+
+    REQUIRE(points(4, 0) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(4, 1) == Approx(+1. / 6.).epsilon(Tolerance));
+    REQUIRE(points(4, 2) == Approx(+1. / 2.).epsilon(Tolerance));
 
     // Check weights
     auto weights = quad->weights();
@@ -132,30 +127,18 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(weights.size() == 5);
 
     // Check weights
-    REQUIRE(weights.at(0) == Approx(+3./40.).epsilon(Tolerance));
-    REQUIRE(weights.at(1) == Approx(+3./40.).epsilon(Tolerance));
-    REQUIRE(weights.at(2) == Approx(+3./40.).epsilon(Tolerance));
-    REQUIRE(weights.at(3) == Approx(+3./40.).epsilon(Tolerance));
-    REQUIRE(weights.at(4) == Approx(+3./40.).epsilon(Tolerance));
-    
-    
+    REQUIRE(weights.at(0) == Approx(+3. / 40.).epsilon(Tolerance));
+    REQUIRE(weights.at(1) == Approx(+3. / 40.).epsilon(Tolerance));
+    REQUIRE(weights.at(2) == Approx(+3. / 40.).epsilon(Tolerance));
+    REQUIRE(weights.at(3) == Approx(+3. / 40.).epsilon(Tolerance));
+    REQUIRE(weights.at(4) == Approx(+3. / 40.).epsilon(Tolerance));
   }
-
-
-
-
-
-
-
-
-
-  
 
   //! Check for eleven quadrature points
   SECTION("Tetrahedron with eleven quadratures") {
     const unsigned Nquadratures = 11;
 
-   auto quad =
+    auto quad =
         std::make_shared<felib::TetrahedronQuadrature<Dim, Nquadratures>>();
 
     // Check quadratures
@@ -166,57 +149,49 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(points.cols() == 3);
 
     // Check quadrature points
-    REQUIRE(points( 0, 0) == Approx(+1./4.).epsilon(Tolerance));
-    REQUIRE(points( 0, 1) == Approx(+1./4.).epsilon(Tolerance));
-    REQUIRE(points( 0, 2) == Approx(+1./4.).epsilon(Tolerance));
-    
-    REQUIRE(points( 1, 0) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 1, 1) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 1, 2) == Approx(+0.0714286).epsilon(Tolerance));
-    
-    REQUIRE(points( 2, 0) == Approx(+0.785714).epsilon(Tolerance));
-    REQUIRE(points( 2, 1) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 2, 2) == Approx(+0.0714286).epsilon(Tolerance));
-    
-    REQUIRE(points( 3, 0) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 3, 1) == Approx(+0.785714).epsilon(Tolerance));
-    REQUIRE(points( 3, 2) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(0, 0) == Approx(+1. / 4.).epsilon(Tolerance));
+    REQUIRE(points(0, 1) == Approx(+1. / 4.).epsilon(Tolerance));
+    REQUIRE(points(0, 2) == Approx(+1. / 4.).epsilon(Tolerance));
 
-    REQUIRE(points( 4, 0) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 4, 1) == Approx(+0.0714286).epsilon(Tolerance));
-    REQUIRE(points( 4, 2) == Approx(+0.785714).epsilon(Tolerance));
+    REQUIRE(points(1, 0) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(1, 1) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(1, 2) == Approx(+0.0714286).epsilon(Tolerance));
 
-    REQUIRE(points( 5, 0) == Approx(+0.399404).epsilon(Tolerance));
-    REQUIRE(points( 5, 1) == Approx(+0.399404).epsilon(Tolerance));
-    REQUIRE(points( 5, 2) == Approx(+0.100596).epsilon(Tolerance));
-    
-    REQUIRE(points( 6, 0) == Approx(+0.399404).epsilon(Tolerance));
-    REQUIRE(points( 6, 1) == Approx(+0.100596).epsilon(Tolerance));
-    REQUIRE(points( 6, 2) == Approx(+0.100596).epsilon(Tolerance));
-    
-    REQUIRE(points( 7, 0) == Approx(+0.100596).epsilon(Tolerance));
-    REQUIRE(points( 7, 1) == Approx(+0.399404).epsilon(Tolerance));
-    REQUIRE(points( 7, 2) == Approx(+0.100596).epsilon(Tolerance));
-    
-    REQUIRE(points( 8, 0) == Approx(+0.100596).epsilon(Tolerance));
-    REQUIRE(points( 8, 1) == Approx(+0.100596).epsilon(Tolerance));
-    REQUIRE(points( 8, 2) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(2, 0) == Approx(+0.785714).epsilon(Tolerance));
+    REQUIRE(points(2, 1) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(2, 2) == Approx(+0.0714286).epsilon(Tolerance));
 
-    REQUIRE(points( 9, 0) == Approx(+0.399404).epsilon(Tolerance));
-    REQUIRE(points( 9, 1) == Approx(+0.100596).epsilon(Tolerance));
-    REQUIRE(points( 9, 2) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(3, 0) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(3, 1) == Approx(+0.785714).epsilon(Tolerance));
+    REQUIRE(points(3, 2) == Approx(+0.0714286).epsilon(Tolerance));
+
+    REQUIRE(points(4, 0) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(4, 1) == Approx(+0.0714286).epsilon(Tolerance));
+    REQUIRE(points(4, 2) == Approx(+0.785714).epsilon(Tolerance));
+
+    REQUIRE(points(5, 0) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(5, 1) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(5, 2) == Approx(+0.100596).epsilon(Tolerance));
+
+    REQUIRE(points(6, 0) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(6, 1) == Approx(+0.100596).epsilon(Tolerance));
+    REQUIRE(points(6, 2) == Approx(+0.100596).epsilon(Tolerance));
+
+    REQUIRE(points(7, 0) == Approx(+0.100596).epsilon(Tolerance));
+    REQUIRE(points(7, 1) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(7, 2) == Approx(+0.100596).epsilon(Tolerance));
+
+    REQUIRE(points(8, 0) == Approx(+0.100596).epsilon(Tolerance));
+    REQUIRE(points(8, 1) == Approx(+0.100596).epsilon(Tolerance));
+    REQUIRE(points(8, 2) == Approx(+0.399404).epsilon(Tolerance));
+
+    REQUIRE(points(9, 0) == Approx(+0.399404).epsilon(Tolerance));
+    REQUIRE(points(9, 1) == Approx(+0.100596).epsilon(Tolerance));
+    REQUIRE(points(9, 2) == Approx(+0.399404).epsilon(Tolerance));
 
     REQUIRE(points(10, 0) == Approx(+0.100596).epsilon(Tolerance));
     REQUIRE(points(10, 1) == Approx(+0.399404).epsilon(Tolerance));
     REQUIRE(points(10, 2) == Approx(+0.399404).epsilon(Tolerance));
-
-
-
-
-
-
-    
-    
 
     // Check weights
     auto weights = quad->weights();
@@ -225,26 +200,16 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(weights.size() == 11);
 
     // Check weights
-    REQUIRE(weights.at( 0) == Approx(-0.0131556).epsilon(Tolerance));
-    REQUIRE(weights.at( 1) == Approx(+0.0076222).epsilon(Tolerance));
-    REQUIRE(weights.at( 2) == Approx(+0.0076222).epsilon(Tolerance));
-    REQUIRE(weights.at( 3) == Approx(+0.0076222).epsilon(Tolerance));
-    REQUIRE(weights.at( 4) == Approx(+0.0076222).epsilon(Tolerance));
-    REQUIRE(weights.at( 5) == Approx(+0.0248889).epsilon(Tolerance));
-    REQUIRE(weights.at( 6) == Approx(+0.0248889).epsilon(Tolerance));
-    REQUIRE(weights.at( 7) == Approx(+0.0248889).epsilon(Tolerance));
-    REQUIRE(weights.at( 8) == Approx(+0.0248889).epsilon(Tolerance));
-    REQUIRE(weights.at( 9) == Approx(+0.0248889).epsilon(Tolerance));
+    REQUIRE(weights.at(0) == Approx(-0.0131556).epsilon(Tolerance));
+    REQUIRE(weights.at(1) == Approx(+0.0076222).epsilon(Tolerance));
+    REQUIRE(weights.at(2) == Approx(+0.0076222).epsilon(Tolerance));
+    REQUIRE(weights.at(3) == Approx(+0.0076222).epsilon(Tolerance));
+    REQUIRE(weights.at(4) == Approx(+0.0076222).epsilon(Tolerance));
+    REQUIRE(weights.at(5) == Approx(+0.0248889).epsilon(Tolerance));
+    REQUIRE(weights.at(6) == Approx(+0.0248889).epsilon(Tolerance));
+    REQUIRE(weights.at(7) == Approx(+0.0248889).epsilon(Tolerance));
+    REQUIRE(weights.at(8) == Approx(+0.0248889).epsilon(Tolerance));
+    REQUIRE(weights.at(9) == Approx(+0.0248889).epsilon(Tolerance));
     REQUIRE(weights.at(10) == Approx(+0.0248889).epsilon(Tolerance));
-    
-    
   }
-
-
- 
-
-
-
-
-  
 }
