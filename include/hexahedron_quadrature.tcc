@@ -15,39 +15,39 @@ felib::HexahedronQuadrature<Tdim, Tnquadratures>::HexahedronQuadrature()
     qpoints_(0, 2) = 0.;
 
     weights_.at(0) = 8.;
-    
+
   } else if (Tnquadratures == 8) {
-    qpoints_(0, 0) = -0.57735;
-    qpoints_(0, 1) = -0.57735;
-    qpoints_(0, 2) = -0.57735;
-    
-    qpoints_(1, 0) = 0.57735;
-    qpoints_(1, 1) = -0.57735;
-    qpoints_(1, 2) = -0.57735;
+    qpoints_(0, 0) = -std::sqrt(3.) / 3.;
+    qpoints_(0, 1) = -std::sqrt(3.) / 3.;
+    qpoints_(0, 2) = -std::sqrt(3.) / 3.;
 
-    qpoints_(2, 0) = 0.57735;
-    qpoints_(2, 1) = 0.57735;
-    qpoints_(2, 2) = -0.57735;
+    qpoints_(1, 0) = std::sqrt(3.) / 3.;
+    qpoints_(1, 1) = -std::sqrt(3.) / 3.;
+    qpoints_(1, 2) = -std::sqrt(3.) / 3.;
 
-    qpoints_(3, 0) = -0.57735;
-    qpoints_(3, 1) = 0.57735;
-    qpoints_(3, 2) = -0.57735;
+    qpoints_(2, 0) = std::sqrt(3.) / 3.;
+    qpoints_(2, 1) = std::sqrt(3.) / 3.;
+    qpoints_(2, 2) = -std::sqrt(3.) / 3.;
 
-    qpoints_(4, 0) = -0.57735;
-    qpoints_(4, 1) = -0.57735;
-    qpoints_(4, 2) = 0.57735;
+    qpoints_(3, 0) = -std::sqrt(3.) / 3.;
+    qpoints_(3, 1) = std::sqrt(3.) / 3.;
+    qpoints_(3, 2) = -std::sqrt(3.) / 3.;
 
-    qpoints_(5, 0) = 0.57735;
-    qpoints_(5, 1) = -0.57735;
-    qpoints_(5, 2) = 0.57735;
+    qpoints_(4, 0) = -std::sqrt(3.) / 3.;
+    qpoints_(4, 1) = -std::sqrt(3.) / 3.;
+    qpoints_(4, 2) = std::sqrt(3.) / 3.;
 
-    qpoints_(6, 0) = 0.57735;
-    qpoints_(6, 1) = 0.57735;
-    qpoints_(6, 2) = 0.57735;
+    qpoints_(5, 0) = std::sqrt(3.) / 3.;
+    qpoints_(5, 1) = -std::sqrt(3.) / 3.;
+    qpoints_(5, 2) = std::sqrt(3.) / 3.;
 
-    qpoints_(7, 0) = -0.57735;
-    qpoints_(7, 1) = 0.57735;
-    qpoints_(7, 2) = 0.57735;
+    qpoints_(6, 0) = std::sqrt(3.) / 3.;
+    qpoints_(6, 1) = std::sqrt(3.) / 3.;
+    qpoints_(6, 2) = std::sqrt(3.) / 3.;
+
+    qpoints_(7, 0) = -std::sqrt(3.) / 3.;
+    qpoints_(7, 1) = std::sqrt(3.) / 3.;
+    qpoints_(7, 2) = std::sqrt(3.) / 3.;
 
     weights_.at(0) = 1.;
     weights_.at(1) = 1.;
@@ -57,63 +57,63 @@ felib::HexahedronQuadrature<Tdim, Tnquadratures>::HexahedronQuadrature()
     weights_.at(5) = 1.;
     weights_.at(6) = 1.;
     weights_.at(7) = 1.;
-    
-  } else if (Tnquadratures == 27) {
-    const double a = 0.774597;
-    const double b = 0.555556;
-    const double c = 0.888889;
 
-    qpoints_(0, 0) = -a;
-    qpoints_(0, 1) = -a;
-    qpoints_(0, 2) = -a;
-    
-    qpoints_(1, 0) = -a;
-    qpoints_(1, 1) = -a;
+  } else if (Tnquadratures == 27) {
+    const double Qpoint_a = std::sqrt(3.) / 5.;
+    const double Weight_b = 5. / 9.;
+    const double Weight_c = 8. / 9.;
+
+    qpoints_(0, 0) = -Qpoint_a;
+    qpoints_(0, 1) = -Qpoint_a;
+    qpoints_(0, 2) = -Qpoint_a;
+
+    qpoints_(1, 0) = -Qpoint_a;
+    qpoints_(1, 1) = -Qpoint_a;
     qpoints_(1, 2) = 0.;
 
-    qpoints_(2, 0) = -a;
-    qpoints_(2, 1) = -a;
-    qpoints_(2, 2) = a;
+    qpoints_(2, 0) = -Qpoint_a;
+    qpoints_(2, 1) = -Qpoint_a;
+    qpoints_(2, 2) = Qpoint_a;
 
-    qpoints_(3, 0) = -a;
+    qpoints_(3, 0) = -Qpoint_a;
     qpoints_(3, 1) = 0.;
-    qpoints_(3, 2) = -a;
+    qpoints_(3, 2) = -Qpoint_a;
 
-    qpoints_(4, 0) = -a;
+    qpoints_(4, 0) = -Qpoint_a;
     qpoints_(4, 1) = 0.;
     qpoints_(4, 2) = 0.;
 
-    qpoints_(5, 0) = -a;
+    qpoints_(5, 0) = -Qpoint_a;
     qpoints_(5, 1) = 0.;
-    qpoints_(5, 2) = a;
+    qpoints_(5, 2) = Qpoint_a;
 
-    qpoints_(6, 0) = -a;
-    qpoints_(6, 1) = a;
-    qpoints_(6, 2) = -a;
+    qpoints_(6, 0) = -Qpoint_a;
+    qpoints_(6, 1) = Qpoint_a;
+    qpoints_(6, 2) = -Qpoint_a;
 
-    qpoints_(7, 0) = -a;
-    qpoints_(7, 1) = a;
+    qpoints_(7, 0) = -Qpoint_a;
+    qpoints_(7, 1) = Qpoint_a;
     qpoints_(7, 2) = 0.;
 
-    qpoints_(8, 0) = -a;
-    qpoints_(8, 1) = a;
-    qpoints_(8, 2) = a;
+    qpoints_(8, 0) = -Qpoint_a;
+    qpoints_(8, 1) = Qpoint_a;
+    qpoints_(8, 2) = Qpoint_a;
 
     qpoints_(9, 0) = 0.;
-    qpoints_(9, 1) = -a;
-    qpoints_(9, 2) = -a;
+    qpoints_(9, 1) = -Qpoint_a;
+    qpoints_(9, 2) = -Qpoint_a;
 
     qpoints_(10, 0) = 0.;
-    qpoints_(10, 1) = -a;
+    qpoints_(10, 1) = -Qpoint_a;
     qpoints_(10, 2) = 0.;
 
     qpoints_(11, 0) = 0.;
-    qpoints_(11, 1) = -a;
-    qpoints_(11, 2) = a;
+    qpoints_(11, 1) = -Qpoint_a;
+    qpoints_(11, 2) = Qpoint_a;
 
     qpoints_(12, 0) = 0.;
     qpoints_(12, 1) = 0.;
-    qpoints_(12, 2) = -a;
+    qpoints_(12, 2) = -Qpoint_a;
 
     qpoints_(13, 0) = 0.;
     qpoints_(13, 1) = 0.;
@@ -121,85 +121,85 @@ felib::HexahedronQuadrature<Tdim, Tnquadratures>::HexahedronQuadrature()
 
     qpoints_(14, 0) = 0.;
     qpoints_(14, 1) = 0.;
-    qpoints_(14, 2) = a;
+    qpoints_(14, 2) = Qpoint_a;
 
     qpoints_(15, 0) = 0.;
-    qpoints_(15, 1) = a;
-    qpoints_(15, 2) = -a;
+    qpoints_(15, 1) = Qpoint_a;
+    qpoints_(15, 2) = -Qpoint_a;
 
     qpoints_(16, 0) = 0.;
-    qpoints_(16, 1) = a;
+    qpoints_(16, 1) = Qpoint_a;
     qpoints_(16, 2) = 0.;
 
     qpoints_(17, 0) = 0.;
-    qpoints_(17, 1) = a;
-    qpoints_(17, 2) = a;
+    qpoints_(17, 1) = Qpoint_a;
+    qpoints_(17, 2) = Qpoint_a;
 
-    qpoints_(18, 0) = a;
-    qpoints_(18, 1) = -a;
-    qpoints_(18, 2) = -a;
+    qpoints_(18, 0) = Qpoint_a;
+    qpoints_(18, 1) = -Qpoint_a;
+    qpoints_(18, 2) = -Qpoint_a;
 
-    qpoints_(19, 0) = a;
-    qpoints_(19, 1) = -a;
+    qpoints_(19, 0) = Qpoint_a;
+    qpoints_(19, 1) = -Qpoint_a;
     qpoints_(19, 2) = 0.;
 
-    qpoints_(20, 0) = a;
-    qpoints_(20, 1) = -a;
-    qpoints_(20, 2) = a;
+    qpoints_(20, 0) = Qpoint_a;
+    qpoints_(20, 1) = -Qpoint_a;
+    qpoints_(20, 2) = Qpoint_a;
 
-    qpoints_(21, 0) = a;
+    qpoints_(21, 0) = Qpoint_a;
     qpoints_(21, 1) = 0.;
-    qpoints_(21, 2) = -a;
+    qpoints_(21, 2) = -Qpoint_a;
 
-    qpoints_(22, 0) = a;
+    qpoints_(22, 0) = Qpoint_a;
     qpoints_(22, 1) = 0.;
     qpoints_(22, 2) = 0.;
 
-    qpoints_(23, 0) = a;
+    qpoints_(23, 0) = Qpoint_a;
     qpoints_(23, 1) = 0.;
-    qpoints_(23, 2) = a;
+    qpoints_(23, 2) = Qpoint_a;
 
-    qpoints_(24, 0) = a;
-    qpoints_(24, 1) = a;
-    qpoints_(24, 2) = -a;
+    qpoints_(24, 0) = Qpoint_a;
+    qpoints_(24, 1) = Qpoint_a;
+    qpoints_(24, 2) = -Qpoint_a;
 
-    qpoints_(25, 0) = a;
-    qpoints_(25, 1) = a;
+    qpoints_(25, 0) = Qpoint_a;
+    qpoints_(25, 1) = Qpoint_a;
     qpoints_(25, 2) = 0.;
 
-    qpoints_(26, 0) = a;
-    qpoints_(26, 1) = a;
-    qpoints_(26, 2) = a;
+    qpoints_(26, 0) = Qpoint_a;
+    qpoints_(26, 1) = Qpoint_a;
+    qpoints_(26, 2) = Qpoint_a;
 
     // Weights
-    weights_.at(0) = b * b * b;
-    weights_.at(1) = b * b * c;
-    weights_.at(2) = b * b * b;
-    weights_.at(3) = b * b * c;
-    weights_.at(4) = b * c * c;
-    weights_.at(5) = b * b * c;
-    weights_.at(6) = b * b * b;
-    weights_.at(7) = b * b * c;
-    weights_.at(8) = b * b * b;
+    weights_.at(0) = Weight_b * Weight_b * Weight_b;
+    weights_.at(1) = Weight_b * Weight_b * Weight_c;
+    weights_.at(2) = Weight_b * Weight_b * Weight_b;
+    weights_.at(3) = Weight_b * Weight_b * Weight_c;
+    weights_.at(4) = Weight_b * Weight_c * Weight_c;
+    weights_.at(5) = Weight_b * Weight_b * Weight_c;
+    weights_.at(6) = Weight_b * Weight_b * Weight_b;
+    weights_.at(7) = Weight_b * Weight_b * Weight_c;
+    weights_.at(8) = Weight_b * Weight_b * Weight_b;
 
-    weights_.at(9) = b * b * c;
-    weights_.at(10) = b * c * c;
-    weights_.at(11) = b * b * c;
-    weights_.at(12) = b * c * c;
-    weights_.at(13) = c * c * c;
-    weights_.at(14) = b * c * c;
-    weights_.at(15) = b * b * c;
-    weights_.at(16) = b * c * c;
-    weights_.at(17) = b * b * c;
+    weights_.at(9) = Weight_b * Weight_b * Weight_c;
+    weights_.at(10) = Weight_b * Weight_c * Weight_c;
+    weights_.at(11) = Weight_b * Weight_b * Weight_c;
+    weights_.at(12) = Weight_b * Weight_c * Weight_c;
+    weights_.at(13) = Weight_c * Weight_c * Weight_c;
+    weights_.at(14) = Weight_b * Weight_c * Weight_c;
+    weights_.at(15) = Weight_b * Weight_b * Weight_c;
+    weights_.at(16) = Weight_b * Weight_c * Weight_c;
+    weights_.at(17) = Weight_b * Weight_b * Weight_c;
 
-    weights_.at(18) = b * b * b;
-    weights_.at(19) = b * b * c;
-    weights_.at(20) = b * b * b;
-    weights_.at(21) = b * b * c;
-    weights_.at(22) = b * c * c;
-    weights_.at(23) = b * b * c;
-    weights_.at(24) = b * b * b;
-    weights_.at(25) = b * b * c;
-    weights_.at(26) = b * b * b;
+    weights_.at(18) = Weight_b * Weight_b * Weight_b;
+    weights_.at(19) = Weight_b * Weight_b * Weight_c;
+    weights_.at(20) = Weight_b * Weight_b * Weight_b;
+    weights_.at(21) = Weight_b * Weight_b * Weight_c;
+    weights_.at(22) = Weight_b * Weight_c * Weight_c;
+    weights_.at(23) = Weight_b * Weight_b * Weight_c;
+    weights_.at(24) = Weight_b * Weight_b * Weight_b;
+    weights_.at(25) = Weight_b * Weight_b * Weight_c;
+    weights_.at(26) = Weight_b * Weight_b * Weight_b;
   }
 }
