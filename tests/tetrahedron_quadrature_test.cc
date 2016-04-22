@@ -127,7 +127,7 @@ TEST_CASE("Tetrahedron quadratures are checked",
     REQUIRE(weights.size() == 5);
 
     // Check weights
-    REQUIRE(weights.at(0) == Approx(+3. / 40.).epsilon(Tolerance));
+    REQUIRE(weights.at(0) == Approx(-2. / 15.).epsilon(Tolerance));
     REQUIRE(weights.at(1) == Approx(+3. / 40.).epsilon(Tolerance));
     REQUIRE(weights.at(2) == Approx(+3. / 40.).epsilon(Tolerance));
     REQUIRE(weights.at(3) == Approx(+3. / 40.).epsilon(Tolerance));
