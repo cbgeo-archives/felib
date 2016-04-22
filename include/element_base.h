@@ -26,28 +26,22 @@ class ElementBase;
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
 class felib::ElementBase {
  public:
-
   // Constructor with id, num_nodes, nodes, num_edge_nodes and edge_nodes
   //! \param[in] id assign as the id_ of the element
-  //! \param[in] num_nodes number of nodes of the element
-  //! \param[in] num_edge_nodes number of edge_ nodes of the element
-  ElementBase(const unsigned& id, const unsigned& num_nodes)
-      : id_{id}, num_nodes_{num_nodes} {
+  explicit ElementBase(const int& id) : id_{id}, num_nodes_{Tnumnodes} {
     // initialise the size of vector of node pointers and set it to null_ptr
     vec_nodes_ptr_.resize(num_nodes_);
-    // vec_nodes_ptr_.fill(nullptr);
+    std::fill(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), nullptr);
     // shapefn_ptr_ = nullptr;
     // quadrature_ptr_ = nullptr;
   }
-
-  
 
   //! Destructor
   virtual ~ElementBase() {}
 
   //! Return id of the element
   //! \return id_ id of the element
-  unsigned id() const { return id_; }
+  int id() const { return id_; }
 
   //! Call a node base function for a particular node
   //! \tparam Func Function type
@@ -98,16 +92,17 @@ class felib::ElementBase {
   //! Add edge_node pointers to element base class
   //! \brief Virtual function to add edge_node pointers to the element
   //! \param[in] edge_node_ptr Pointer to an edge_node in the element
-  virtual bool add_edge_node_ptr(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) = 0;
+  virtual bool add_edge_node_ptr(
+      std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) = 0;
 
   //! Add edge_node pointer to a given index
   //! \brief Add an edge_node pointer at a given index of the element
   bool insert_edge_node_ptr_at(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr,
-                          const unsigned index);
+                               const unsigned index);
 
   //! Compute centroid
   std::array<double, Tdim> centroid();
-  
+
   //! \brief Return the volume of the element
   //! \detail Return volume in 3D, area in 2D and length in 1D
   virtual double volume() = 0;
@@ -121,15 +116,16 @@ class felib::ElementBase {
 
  protected:
   //! element id
-  unsigned id_;
+  int id_;
   //! element nodes number
   unsigned num_nodes_;
   //! element edge_nodes number
-  unsigned num_edge_nodes_;  
+  unsigned num_edge_nodes_;
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
   //! vector of neighbour element pointers
-  std::vector<std::shared_ptr<ElementBase<Tdim, Tnumnodes, Tnquadratures>>> vec_neighbours_;
+  std::vector<std::shared_ptr<ElementBase<Tdim, Tnumnodes, Tnquadratures>>>
+      vec_neighbours_;
   //! element centroid
   std::array<double, Tdim> centroid_;
   //! element centroid_edge_nodes (based on edge nodes only)
@@ -140,7 +136,6 @@ class felib::ElementBase {
   std::unique_ptr<felib::ShapeFnBase<Tdim, Tnumnodes>> shapefn_ptr_;
   //! quadrature points base class pointer
   std::unique_ptr<felib::QuadratureBase<Tdim, Tnquadratures>> quadrature_ptr_;
-
 };
 
 #include "element_base.tcc"

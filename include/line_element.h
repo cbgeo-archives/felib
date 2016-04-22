@@ -24,23 +24,30 @@ class LineElement;
 }
 
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
-class felib::LineElement : public felib::ElementBase<Tdim, Tnumnodes, Tnquadratures> {
+class felib::LineElement
+    : public felib::ElementBase<Tdim, Tnumnodes, Tnquadratures> {
 
-public:
+ public:
   // Default constructor
-  LineElement(const unsigned&id) : felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>(id, Tnumnodes){ 
-        shapefn_ptr_ = std::unique_ptr<felib::LineShapeFn<Tdim, Tnumnodes>>(new felib::LineShapeFn<Tdim, Tnumnodes>());
-        quadrature_ptr_ = std::unique_ptr<felib::LineQuadrature<Tdim, Tnquadratures>>(new felib::LineQuadrature<Tdim,Tnquadratures>());
+  LineElement(const unsigned& id)
+      : felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>(id) {
+    shapefn_ptr_ = std::unique_ptr<felib::LineShapeFn<Tdim, Tnumnodes>>(
+        new felib::LineShapeFn<Tdim, Tnumnodes>());
+    quadrature_ptr_ =
+        std::unique_ptr<felib::LineQuadrature<Tdim, Tnquadratures>>(
+            new felib::LineQuadrature<Tdim, Tnquadratures>());
   }
 
-    bool add_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr) {return 1; }
-    bool add_edge_node_ptr(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) { return 1; }
-    double volume() { return 1.; }
+  bool add_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr) { return 1; }
+  bool add_edge_node_ptr(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) {
+    return 1;
+  }
+  double volume() { return 1.; }
 
-protected:
-    using felib::ElementBase<Tdim,Tnumnodes,Tnquadratures>::shapefn_ptr_;
-    using felib::ElementBase<Tdim,Tnumnodes,Tnquadratures>::quadrature_ptr_;
+ protected:
+  using felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::shapefn_ptr_;
+  using felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::quadrature_ptr_;
 };
 
 // #include "line_element.tcc"
-#endif // FELIB_LINEELEMENT_H_
+#endif  // FELIB_LINEELEMENT_H_
