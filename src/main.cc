@@ -4,6 +4,9 @@
 #include "quadrilateral_quadrature.h"
 #include "element_base.h"
 #include "line_element.h"
+#include "quadrilateral_element.h"
+#include "hexahedron_element.h"
+#include "triangle_element.h"
 
 
 #include <array>

@@ -1,5 +1,5 @@
-#ifndef FELIB_LINEELEMENT_H_
-#define FELIB_LINEELEMENT_H_
+#ifndef FELIB_TRIANGLEELEMENT_H_
+#define FELIB_TRIANGLEELEMENT_H_
 
 #include <algorithm>
 #include <array>
@@ -8,8 +8,8 @@
 #include <memory>
 #include <vector>
 
-#include "line_quadrature.h"
-#include "line_shapefn.h"
+// #include "triangle_quadrature.h"
+#include "triangle_shapefn.h"
 #include "node_base.h"
 #include "quadrature_base.h"
 #include "shapefn_base.h"
@@ -20,23 +20,23 @@
 //! tparam Tnquadratures Number of quadrature points
 namespace felib {
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
-class LineElement;
+class TriangleElement;
 }
 
 template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
-class felib::LineElement
+class felib::TriangleElement
     : public felib::ElementBase<Tdim, Tnumnodes, Tnquadratures> {
 
  public:
   // Default constructor with element id
   //! \param[in] id element id
-  LineElement(const unsigned& id)
+  TriangleElement(const unsigned& id)
       : felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>(id) {
-    shapefn_ptr_ = std::unique_ptr<felib::LineShapeFn<Tdim, Tnumnodes>>(
-        new felib::LineShapeFn<Tdim, Tnumnodes>());
-    quadrature_ptr_ =
-        std::unique_ptr<felib::LineQuadrature<Tdim, Tnquadratures>>(
-            new felib::LineQuadrature<Tdim, Tnquadratures>());
+    shapefn_ptr_ = std::unique_ptr<felib::TriangleShapeFn<Tdim, Tnumnodes>>(
+        new felib::TriangleShapeFn<Tdim, Tnumnodes>());
+    // quadrature_ptr_ =
+    // std::unique_ptr<felib::TriangleQuadrature<Tdim, Tnquadratures>>(
+    // new felib::TriangleQuadrature<Tdim, Tnquadratures>());
   }
 
   //! Add node pointers to line element
@@ -60,5 +60,5 @@ class felib::LineElement
   using felib::ElementBase<Tdim, Tnumnodes, Tnquadratures>::vec_nodes_ptr_;
 };
 
-// #include "line_element.tcc"
+// #include "triangle_element.tcc"
 #endif  // FELIB_LINEELEMENT_H_
