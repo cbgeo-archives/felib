@@ -13,7 +13,7 @@
 #include "shapefn_base.h"
 
 namespace felib {
-template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
+template <unsigned Tdim, unsigned Tnnodes, unsigned Tnquadratures>
 class ElementBase;
 }
 
@@ -21,14 +21,14 @@ class ElementBase;
 //! \brief Element class that stores the information about elements
 //! \details ElementBase class: id_ and nodes. test test test
 //! \tparam Tdim Dimension
-//! \tparam Tnumnodes Number of nodes
+//! \tparam Tnnodes Number of nodes
 //! \tparam Tnquadratures Number of quadrature points
-template <unsigned Tdim, unsigned Tnumnodes, unsigned Tnquadratures>
+template <unsigned Tdim, unsigned Tnnodes, unsigned Tnquadratures>
 class felib::ElementBase {
  public:
   // Constructor with id, num_nodes, nodes, num_edge_nodes and edge_nodes
   //! \param[in] id assign as the id_ of the element
-  explicit ElementBase(const int& id) : id_{id}, num_nodes_{Tnumnodes} {
+  explicit ElementBase(const int& id) : id_{id}, num_nodes_{Tnnodes} {
     // initialise the size of vector of node pointers and set it to null_ptr
     vec_nodes_ptr_.resize(num_nodes_);
     std::fill(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), nullptr);
@@ -48,7 +48,7 @@ class felib::ElementBase {
   //! \param[in] nnode Node number
   //! \param[in] func A node base function
   template <typename Func>
-  Func call_function_node(const unsigned& nnode, Func func);
+  Func call_node_function(const unsigned& nnode, Func func);
 
   //! Iterate over nodes
   //! \tparam Func Function type
@@ -109,10 +109,10 @@ class felib::ElementBase {
 
  private:
   //! Copy constructor
-  ElementBase(const ElementBase<Tdim, Tnumnodes, Tnquadratures>&);
+  ElementBase(const ElementBase<Tdim, Tnnodes, Tnquadratures>&);
 
   //! Assignement operator
-  ElementBase& operator=(const ElementBase<Tdim, Tnumnodes, Tnquadratures>&);
+  ElementBase& operator=(const ElementBase<Tdim, Tnnodes, Tnquadratures>&);
 
  protected:
   //! element id
@@ -124,7 +124,7 @@ class felib::ElementBase {
   //! vector of node pointers
   std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
   //! vector of neighbour element pointers
-  std::vector<std::shared_ptr<ElementBase<Tdim, Tnumnodes, Tnquadratures>>>
+  std::vector<std::shared_ptr<ElementBase<Tdim, Tnnodes, Tnquadratures>>>
       vec_neighbours_;
   //! element centroid
   std::array<double, Tdim> centroid_;
@@ -133,7 +133,7 @@ class felib::ElementBase {
   //! element volume
   double volume_;
   //! shape function base class pointer
-  std::unique_ptr<felib::ShapeFnBase<Tdim, Tnumnodes>> shapefn_ptr_;
+  std::unique_ptr<felib::ShapeFnBase<Tdim, Tnnodes>> shapefn_ptr_;
   //! quadrature points base class pointer
   std::unique_ptr<felib::QuadratureBase<Tdim, Tnquadratures>> quadrature_ptr_;
 };

@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/allTests.dir/node_base_test.cpp.o  -o allTests -rdynamic -Wl,-Bstatic -lgtest -Wl,-Bdynamic -lpthread -std=c++11 
