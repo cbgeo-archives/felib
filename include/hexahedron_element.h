@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 
-// #include "hexahedron_quadrature.h"
+#include "hexahedron_quadrature.h"
 #include "hexahedron_shapefn.h"
 #include "node_base.h"
 #include "quadrature_base.h"
@@ -33,10 +33,10 @@ class felib::HexahedronElement
   HexahedronElement(const unsigned& id)
       : felib::ElementBase<Tdim, Tnnodes, Tnquadratures>(id) {
     shapefn_ptr_ = std::unique_ptr<felib::HexahedronShapeFn<Tdim, Tnnodes>>(
-        new felib::LineShapeFn<Tdim, Tnnodes>());
-    // quadrature_ptr_ =
-    // std::unique_ptr<felib::HexahedronQuadrature<Tdim, Tnquadratures>>(
-    // new felib::HexhedronQuadrature<Tdim, Tnquadratures>());
+        new felib::HexahedronShapeFn<Tdim, Tnnodes>());
+    quadrature_ptr_ =
+        std::unique_ptr<felib::HexahedronQuadrature<Tdim, Tnquadratures>>(
+            new felib::HexahedronQuadrature<Tdim, Tnquadratures>());
   }
 
   //! Add node pointers to hexahedron element

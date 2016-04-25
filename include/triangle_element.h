@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 
-// #include "triangle_quadrature.h"
+#include "triangle_quadrature.h"
 #include "triangle_shapefn.h"
 #include "node_base.h"
 #include "quadrature_base.h"
@@ -34,9 +34,9 @@ class felib::TriangleElement
       : felib::ElementBase<Tdim, Tnnodes, Tnquadratures>(id) {
     shapefn_ptr_ = std::unique_ptr<felib::TriangleShapeFn<Tdim, Tnnodes>>(
         new felib::TriangleShapeFn<Tdim, Tnnodes>());
-    // quadrature_ptr_ =
-    // std::unique_ptr<felib::TriangleQuadrature<Tdim, Tnquadratures>>(
-    // new felib::TriangleQuadrature<Tdim, Tnquadratures>());
+    quadrature_ptr_ =
+        std::unique_ptr<felib::TriangleQuadrature<Tdim, Tnquadratures>>(
+            new felib::TriangleQuadrature<Tdim, Tnquadratures>());
   }
 
   //! Add node pointers to triangle element
