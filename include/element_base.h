@@ -30,8 +30,7 @@ class felib::ElementBase {
   //! \param[in] id assign as the id_ of the element
   explicit ElementBase(const int& id) : id_{id}, num_nodes_{Tnnodes} {
     // initialise the size of vector of node pointers and set it to null_ptr
-    vec_nodes_ptr_.resize(num_nodes_);
-    std::fill(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), nullptr);
+    std::fill(array_nodes_ptr_.begin(), array_nodes_ptr_.end(), nullptr);
     // shapefn_ptr_ = nullptr;
     // quadrature_ptr_ = nullptr;
   }
@@ -70,35 +69,20 @@ class felib::ElementBase {
   //! \param[in] index Index at which the node pointer will be assigned
   bool insert_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr_,
                        const unsigned& index);
+  
+  //! Update a node pointer at a specific index
+  //! \param[in] node_ptr Pointer to a node in the element
+  //! \param[in] index Index at which the node pointer will be assigned
+  bool update_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr_,
+                       const unsigned& index);
 
   //! Info
   void info() {
     std::cout << "Element id: " << id_ << "\nnodes: ";
-    for (const auto& node_ptr : vec_nodes_ptr_)
+    for (const auto& node_ptr : array_nodes_ptr_)
       std::cout << node_ptr->id() << ", ";
     std::cout << std::endl;
   }
-
-  //! Add node pointers to element base class
-  //! \brief Virtual function to add node pointers to the element
-  //! \param[in] node_ptr Pointer to a node in the element
-  virtual bool add_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr) = 0;
-
-  //! Add node pointer to a given index
-  //! \brief Add a node pointer at a given index of the element
-  bool insert_node_ptr_at(std::shared_ptr<NodeBase<Tdim>>& node_ptr,
-                          const unsigned index);
-
-  //! Add edge_node pointers to element base class
-  //! \brief Virtual function to add edge_node pointers to the element
-  //! \param[in] edge_node_ptr Pointer to an edge_node in the element
-  virtual bool add_edge_node_ptr(
-      std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) = 0;
-
-  //! Add edge_node pointer to a given index
-  //! \brief Add an edge_node pointer at a given index of the element
-  bool insert_edge_node_ptr_at(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr,
-                               const unsigned index);
 
   //! Compute centroid
   std::array<double, Tdim> centroid();
@@ -122,14 +106,12 @@ class felib::ElementBase {
   //! element edge_nodes number
   unsigned num_edge_nodes_;
   //! vector of node pointers
-  std::vector<std::shared_ptr<NodeBase<Tdim>>> vec_nodes_ptr_;
+  std::array<std::shared_ptr<NodeBase<Tdim>>, Tnnodes> array_nodes_ptr_;
   //! vector of neighbour element pointers
   std::vector<std::shared_ptr<ElementBase<Tdim, Tnnodes, Tnquadratures>>>
       vec_neighbours_;
   //! element centroid
   std::array<double, Tdim> centroid_;
-  //! element centroid_edge_nodes (based on edge nodes only)
-  std::array<double, Tdim> centroid_edge_nodes_;
   //! element volume
   double volume_;
   //! shape function base class pointer

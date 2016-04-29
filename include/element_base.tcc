@@ -5,8 +5,9 @@ std::array<double, Tdim>
   // Compute centroid for 1D, 2D and 3D cases
   std::array<double, Tdim> centroid = {{0.}};
 
-  for (const auto node_ptr : vec_nodes_ptr_) {
-    auto coordinates = node_ptr->coordinates();
+  for (unsigned edge_node_id = 0; edge_node_id < num_edge_nodes_;
+       ++edge_node_id) {
+    auto coordinates = array_nodes_ptr_.at(edge_node_id)->coordinates();
     std::transform(coordinates.begin(), coordinates.end(), centroid.begin(),
                    centroid.end(), std::plus<double>());
     centroid = centroid / Tdim;
@@ -19,8 +20,8 @@ std::array<double, Tdim>
 template <unsigned Tdim, unsigned Tnnodes, unsigned Tnquadratures>
 bool felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::insert_node_ptr(
     std::shared_ptr<NodeBase<Tdim>>& node_ptr, const unsigned& index) {
-  if (vec_nodes_ptr_.at(index) == nullptr) {
-    vec_nodes_ptr_.at(index) = node_ptr;
+  if (array_nodes_ptr_.at(index) == nullptr) {
+    array_nodes_ptr_.at(index) = node_ptr;
     return true;
   } else
     return false;
@@ -31,7 +32,7 @@ template <unsigned Tdim, unsigned Tnnodes, unsigned Tnquadratures>
 template <typename Func>
 Func felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::call_node_function(
     const unsigned& nnode, Func func) {
-  return func(vec_nodes_ptr_.at(nnode));
+  return func(array_nodes_ptr_.at(nnode));
 }
 
 //! Iterate over nodes
@@ -40,7 +41,7 @@ template <typename Func>
 Func felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::iterate_over_nodes(
     Func func) {
 
-  return std::for_each(vec_nodes_ptr_.begin(), vec_nodes_ptr_.end(), func);
+  return std::for_each(array_nodes_ptr_.begin(), array_nodes_ptr_.end(), func);
 }
 
 //! Iterate over neighbouring elements

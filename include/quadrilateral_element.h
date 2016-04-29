@@ -40,16 +40,6 @@ class felib::QuadrilateralElement
             new felib::QuadrilateralQuadrature<Tdim, Tnquadratures>());
   }
 
-  //! Add node pointers to quadrilateral element
-  //! \param[in] node_ptr Pointer to a node in the element
-  bool add_node_ptr(std::shared_ptr<NodeBase<Tdim>>& node_ptr) { return 1; }
-
-  //! Add edge node pointers to quadrilateral element
-  //! \param[in] edge_node_ptr Pointer to an edge_node in the element
-  bool add_edge_node_ptr(std::shared_ptr<NodeBase<Tdim>>& edge_node_ptr) {
-    return 1;
-  }
-
   //! Return the length of the quadrilateral element
   //! \param[out] volume_ length of the element
   double volume() { return 1.; }
@@ -58,7 +48,7 @@ class felib::QuadrilateralElement
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::shapefn_ptr_;
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::quadrature_ptr_;
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::volume_;
-  using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::vec_nodes_ptr_;
+  using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::array_nodes_ptr_;
 };
 
 // #include "quadrilateral_element.tcc"
