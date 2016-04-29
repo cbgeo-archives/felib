@@ -11,28 +11,28 @@ TEST_CASE("Node base is checked for 1D case", "[node][1D]") {
 
   //! Check for id = 0
   SECTION("Node id is zero") {
-    int id = 0;
+    long long id = 0;
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
     REQUIRE(node->id() == 0);
   }
 
-  SECTION("Node id is zero") {
+  SECTION("Node id is negative") {
     //! Check for negative node id
-    int id = std::numeric_limits<int>::min();
+    long long id = std::numeric_limits<long long>::min();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::min());
+    REQUIRE(node->id() == std::numeric_limits<long long>::min());
   }
 
   SECTION("Node id is positive") {
     //! Check for id is a positive value
-    int id = std::numeric_limits<int>::max();
+    long long id = std::numeric_limits<long long>::max();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::max());
+    REQUIRE(node->id() == std::numeric_limits<long long>::max());
   }
 
   //! Test coordinates function
   SECTION("coordinates function is checked") {
-    int id = 0;
+    long long id = 0;
     const double Tolerance = 1.E-7;
 
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
@@ -44,8 +44,7 @@ TEST_CASE("Node base is checked for 1D case", "[node][1D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for negative value of coordinates
-    for (auto &coord : coords)
-      coord = -1. * std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = -1. * std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -54,8 +53,7 @@ TEST_CASE("Node base is checked for 1D case", "[node][1D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for positive value of coordinates
-    for (auto &coord : coords)
-      coord = std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -72,28 +70,28 @@ TEST_CASE("Node base is checked for 2D case", "[node][2D]") {
 
   //! Check for id = 0
   SECTION("Node id is zero") {
-    int id = 0;
+    long long id = 0;
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
     REQUIRE(node->id() == 0);
   }
 
-  SECTION("Node id is zero") {
+  SECTION("Node id is negative") {
     //! Check for negative node id
-    int id = std::numeric_limits<int>::min();
+    long long id = std::numeric_limits<long long>::min();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::min());
+    REQUIRE(node->id() == std::numeric_limits<long long>::min());
   }
 
   SECTION("Node id is positive") {
     //! Check for id is a positive value
-    int id = std::numeric_limits<int>::max();
+    long long id = std::numeric_limits<long long>::max();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::max());
+    REQUIRE(node->id() == std::numeric_limits<long long>::max());
   }
 
   //! Test coordinates function
   SECTION("coordinates function is checked") {
-    int id = 0;
+    long long id = 0;
     const double Tolerance = 1.E-7;
 
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
@@ -105,8 +103,7 @@ TEST_CASE("Node base is checked for 2D case", "[node][2D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for negative value of coordinates
-    for (auto &coord : coords)
-      coord = -1. * std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = -1. * std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -115,8 +112,7 @@ TEST_CASE("Node base is checked for 2D case", "[node][2D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for positive value of coordinates
-    for (auto &coord : coords)
-      coord = std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -133,28 +129,28 @@ TEST_CASE("Node base is checked for 3D case", "[node][3D]") {
 
   //! Check for id = 0
   SECTION("Node id is zero") {
-    int id = 0;
+    long long id = 0;
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
     REQUIRE(node->id() == 0);
   }
 
-  SECTION("Node id is zero") {
+  SECTION("Node id is negative") {
     //! Check for negative node id
-    int id = std::numeric_limits<int>::min();
+    long long id = std::numeric_limits<long long>::min();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::min());
+    REQUIRE(node->id() == std::numeric_limits<long long>::min());
   }
 
   SECTION("Node id is positive") {
     //! Check for id is a positive value
-    int id = std::numeric_limits<int>::max();
+    long long id = std::numeric_limits<long long>::max();
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
-    REQUIRE(node->id() == std::numeric_limits<int>::max());
+    REQUIRE(node->id() == std::numeric_limits<long long>::max());
   }
 
   //! Test coordinates function
   SECTION("coordinates function is checked") {
-    int id = 0;
+    long long id = 0;
     const double Tolerance = 1.E-7;
 
     auto node = std::make_shared<felib::NodeBase<Dim>>(id, coords);
@@ -166,8 +162,7 @@ TEST_CASE("Node base is checked for 3D case", "[node][3D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for negative value of coordinates
-    for (auto &coord : coords)
-      coord = -1. * std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = -1. * std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -176,8 +171,7 @@ TEST_CASE("Node base is checked for 3D case", "[node][3D]") {
     REQUIRE(coordinates.size() == Dim);
 
     //! Check for positive value of coordinates
-    for (auto &coord : coords)
-      coord = std::numeric_limits<double>::max();
+    for (auto& coord : coords) coord = std::numeric_limits<double>::max();
     node->coordinates(coords);
     coordinates = node->coordinates();
     for (unsigned i = 0; i < coordinates.size(); ++i)
@@ -185,5 +179,4 @@ TEST_CASE("Node base is checked for 3D case", "[node][3D]") {
 
     REQUIRE(coordinates.size() == Dim);
   }
-
 }

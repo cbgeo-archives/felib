@@ -19,7 +19,6 @@ class ElementBase;
 
 // Element Base class
 //! \brief Element class that stores the information about elements
-//! \details ElementBase class: id_ and nodes. test test test
 //! \tparam Tdim Dimension
 //! \tparam Tnnodes Number of nodes
 //! \tparam Tnquadratures Number of quadrature points
@@ -40,7 +39,7 @@ class felib::ElementBase {
 
   //! Return id of the element
   //! \return id_ id of the element
-  int id() const { return id_; }
+  long long id() const { return id_; }
 
   //! Call a node base function for a particular node
   //! \tparam Func Function type
@@ -100,7 +99,7 @@ class felib::ElementBase {
 
  protected:
   //! element id
-  int id_;
+  long long id_;
   //! element nodes number
   unsigned num_nodes_;
   //! element edge_nodes number

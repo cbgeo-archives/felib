@@ -14,7 +14,7 @@
 #include <memory>
 
 int main(int argc, char** argv) {
-  unsigned id = 0;
+  long long id = 0;
   const unsigned Dim = 2;
   std::array<double, Dim> coord = {{0.}};
 
