@@ -1,15 +1,15 @@
 #ifndef FELIB_QUADRATURE_BASE_H_
 #define FELIB_QUADRATURE_BASE_H_
 
-#include <eigen3/Eigen/Dense>
-
 #include <algorithm>
 #include <iostream>
 #include <limits>
 #include <vector>
 
+#include <eigen3/Eigen/Dense>
+
 namespace felib {
-  template <unsigned Tdim, unsigned Tnquadratures>
+template <unsigned Tdim, unsigned Tnquadratures>
 class QuadratureBase;
 }
 
@@ -26,16 +26,17 @@ class felib::QuadratureBase {
   QuadratureBase() {
     qpoints_.fill(std::numeric_limits<double>::quiet_NaN());
     weights_.resize(Tnquadratures);
-    std::fill(weights_.begin(), weights_.end(), std::numeric_limits<double>::quiet_NaN());
+    std::fill(weights_.begin(), weights_.end(),
+              std::numeric_limits<double>::quiet_NaN());
   }
 
   //! Destructor
   virtual ~QuadratureBase() {}
-  
+
   //! Return quadrature points
   //! \param[out] qpoints Quadrature points in local coordinates
-  Eigen::Matrix<double, Tnquadratures, Tdim> quadratures() {return qpoints_; }
-  
+  Eigen::Matrix<double, Tnquadratures, Tdim> quadratures() { return qpoints_; }
+
   //! Return weights
   //! \param[out] weights Weights for quadrature points
   std::vector<double> weights() { return weights_; }

@@ -2,9 +2,10 @@
 #define FELIB_SHAPEFN_BASE_H_
 
 #include <array>
-#include <eigen3/Eigen/Dense>
 #include <iostream>
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 
 namespace felib {
 template <unsigned Tdim, unsigned Tnfunctions>

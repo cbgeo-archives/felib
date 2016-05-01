@@ -21,15 +21,15 @@ felib::TetrahedronQuadrature<Tdim, Tnquadratures>::TetrahedronQuadrature()
     // Define quadratures
 
     const double Qpoint_a =
-        (5. + 3. * std::sqrt(5.)) / 20.;                // (5 + 3 sqrt(5)) / 20
-    const double Qpoint_b = (5. - std::sqrt(5)) / 20.0; // (5 - sqrt(5)) / 20
+        (5. + 3. * std::sqrt(5.)) / 20.;                 // (5 + 3 sqrt(5)) / 20
+    const double Qpoint_b = (5. - std::sqrt(5)) / 20.0;  // (5 - sqrt(5)) / 20
 
     const double Weight = 1. / 24.;
 
     qpoints_(0, 0) = Qpoint_a;
     qpoints_(0, 1) = Qpoint_b;
     qpoints_(0, 2) = Qpoint_b;
-    
+
     qpoints_(1, 0) = Qpoint_b;
     qpoints_(1, 1) = Qpoint_a;
     qpoints_(1, 2) = Qpoint_b;
@@ -42,7 +42,6 @@ felib::TetrahedronQuadrature<Tdim, Tnquadratures>::TetrahedronQuadrature()
     qpoints_(3, 1) = Qpoint_b;
     qpoints_(3, 2) = Qpoint_b;
 
-    
     weights_.at(0) = Weight;
     weights_.at(1) = Weight;
     weights_.at(2) = Weight;
@@ -67,7 +66,7 @@ felib::TetrahedronQuadrature<Tdim, Tnquadratures>::TetrahedronQuadrature()
     qpoints_(3, 0) = Qpoint_a;
     qpoints_(3, 1) = Qpoint_a;
     qpoints_(3, 2) = 0.5;
-    
+
     qpoints_(4, 0) = Qpoint_a;
     qpoints_(4, 1) = Qpoint_a;
     qpoints_(4, 2) = Qpoint_a;
@@ -80,8 +79,8 @@ felib::TetrahedronQuadrature<Tdim, Tnquadratures>::TetrahedronQuadrature()
 
   } else if (Tnquadratures == 11) {
 
-    const double Qpoint_a = (1. + std::sqrt(5./14.))/4.;
-    const double Qpoint_b = (1. - std::sqrt(5./14.))/4.;
+    const double Qpoint_a = (1. + std::sqrt(5. / 14.)) / 4.;
+    const double Qpoint_b = (1. - std::sqrt(5. / 14.)) / 4.;
 
     const double W0 = -74. / 5625.;
     const double W1 = 343. / 45000.;
