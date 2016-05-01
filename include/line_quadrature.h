@@ -1,9 +1,9 @@
 #ifndef FELIB_LINE_QUADRATURE_H_
 #define FELIB_LINE_QUADRATURE_H_
 
-#include <eigen3/Eigen/Dense>
-
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 
 #include "quadrature_base.h"
 

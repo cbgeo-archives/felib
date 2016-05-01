@@ -1,11 +1,11 @@
 #ifndef FELIB_QUADRILATERALSHAPEFN_H_
 #define FELIB_QUADRILATERALSHAPEFN_H_
 
-#include <eigen3/Eigen/Dense>
-
 #include <array>
 #include <iostream>
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 
 #include "shapefn_base.h"
 
@@ -14,14 +14,15 @@
 //! \tparam Tdim Dimension
 //! \tparam Tnfunctions Number of shape functions
 namespace felib {
-  template <unsigned Tdim, unsigned Tnfunctions> 
-  class QuadrilateralShapeFn;
+template <unsigned Tdim, unsigned Tnfunctions>
+class QuadrilateralShapeFn;
 }
 
-template <unsigned Tdim, unsigned Tnfunctions> 
-class felib::QuadrilateralShapeFn : public felib::ShapeFnBase<Tdim, Tnfunctions > {
+template <unsigned Tdim, unsigned Tnfunctions>
+class felib::QuadrilateralShapeFn
+    : public felib::ShapeFnBase<Tdim, Tnfunctions> {
 
-public:
+ public:
   //! Default constructor
   QuadrilateralShapeFn() : felib::ShapeFnBase<Tdim, Tnfunctions>() {
     static_assert(Tdim == 2, "Invalid dimension for a quadrilateral element");
@@ -32,16 +33,16 @@ public:
   //! Evaluate the shape functions
   //! \param[in] xi Local coordinates
   //! \param[out] shapefn_ Shape functions at the given local coordinates
-   Eigen::Matrix<double, Tnfunctions, 1> shapefn(
-         const std::array<double, Tdim>& xi);
+  Eigen::Matrix<double, Tnfunctions, 1> shapefn(
+      const std::array<double, Tdim>& xi);
 
   //! Evaluate the gradient of shape functions in local coordinates
   //! \param[in] xi Local coordinates
   //! \param[out] grad_shapefn_ Local gradients of shape functions
   Eigen::Matrix<double, Tnfunctions, Tdim> grad_shapefn(
-         const std::array<double, Tdim>& xi);
+      const std::array<double, Tdim>& xi);
 };
 
 #include "quadrilateral_shapefn.tcc"
 
-#endif // FELIB_QUADRILATERALSHAPEFN_H_
+#endif  // FELIB_QUADRILATERALSHAPEFN_H_

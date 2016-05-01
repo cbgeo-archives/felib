@@ -2,9 +2,10 @@
 #define FELIB_LINESHAPE_H_
 
 #include <array>
-#include <eigen3/Eigen/Dense>
 #include <iostream>
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 
 #include "shapefun_base.h"
 
