@@ -1,9 +1,9 @@
 #ifndef FELIB_TETRAHEDRON_QUADRATURE_H_
 #define FELIB_TETRAHEDRON_QUADRATURE_H_
 
-#include <eigen3/Eigen/Dense>
-
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 
 #include "quadrature_base.h"
 
@@ -17,9 +17,10 @@ class TetrahedronQuadrature;
 //! \tparam Tdim Dimenstion
 //! \tparam Tnquadratures number of quadratures
 template <unsigned Tdim, unsigned Tnquadratures>
-class felib::TetrahedronQuadrature : public felib::QuadratureBase<Tdim, Tnquadratures> {
+class felib::TetrahedronQuadrature
+    : public felib::QuadratureBase<Tdim, Tnquadratures> {
 
-public:
+ public:
   TetrahedronQuadrature();
 
  private:

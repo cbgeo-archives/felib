@@ -3,11 +3,12 @@ template <unsigned Tdim, unsigned Tnquadratures>
 felib::LineQuadrature<Tdim, Tnquadratures>::LineQuadrature()
     : felib::QuadratureBase<Tdim, Tnquadratures>() {
   static_assert(Tdim == 1, "Invalid dimension for a 1D element");
-  static_assert((Tnquadratures == 1 || Tnquadratures == 2 || Tnquadratures == 3),
-                "Invalid number of quadratures");
+  static_assert(
+      (Tnquadratures == 1 || Tnquadratures == 2 || Tnquadratures == 3),
+      "Invalid number of quadratures");
 
   if (Tnquadratures == 1) {
-    
+
     // Single point quadrature
     // Define quadratures
     qpoints_(0) = 0.;
@@ -25,7 +26,7 @@ felib::LineQuadrature<Tdim, Tnquadratures>::LineQuadrature()
     // Define weights
     weights_.at(0) = 1.;
     weights_.at(1) = 1.;
-    
+
   } else if (Tnquadratures == 3) {
 
     // Three point quadrature

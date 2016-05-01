@@ -63,7 +63,7 @@ inline Eigen::Matrix<double, 6, 2> felib::TriangleShapeFn<2, 6>::grad_shapefn(
   grad_shapefn_(3, 0) = 4. - 8. * xi.at(0) - 4. * xi.at(1);
   grad_shapefn_(4, 0) = 4. * xi.at(1);
   grad_shapefn_(5, 0) = -4. * xi.at(1);
-  
+
   grad_shapefn_(0, 1) = 4. * xi.at(0) + 4. * xi.at(1) - 3.;
   grad_shapefn_(1, 1) = 0;
   grad_shapefn_(2, 1) = 4. * xi.at(1) - 1.;
