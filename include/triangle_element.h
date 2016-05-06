@@ -40,8 +40,17 @@ class felib::TriangleElement
   }
 
   //! Return the length of the triangle element
-  //! \param[out] volume_ length of the element
-  double volume() { return 1.; }
+  //! \param[out] volume_ area of the element
+  double volume() { 
+    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
+    std::array<double, Tdim> second_node = array_nodes_ptr_.at(1)->coordinates();
+    std::array<double, Tdim> third_node = array_nodes_ptr_.at(2)->coordinates();
+
+    double length_x = second_node.at(0)  - first_node.at(0);
+    double length_y = third_node.at(1) - first_node.at(1);
+    volume_ = std::fabs(0.5 * length_x * length_y);
+    return volume_;
+  }
 
  protected:
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::shapefn_ptr_;

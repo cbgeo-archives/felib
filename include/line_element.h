@@ -41,7 +41,12 @@ class felib::LineElement
 
   //! Return the length of the line element
   //! \param[out] volume_ length of the element
-  double volume() { return 1.; }
+  double volume() {
+    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
+    std::array<double, Tdim> second_node = array_nodes_ptr_.at(1)->coordinates(); 
+    volume_ = std::fabs(second_node.at(0) - first_node.at(0));
+    return volume_;
+  }
 
  protected:
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::shapefn_ptr_;

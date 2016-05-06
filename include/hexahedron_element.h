@@ -40,8 +40,14 @@ class felib::HexahedronElement
   }
 
   //! Return the length of the hexahedron element
-  //! \param[out] volume_ length of the element
-  double volume() { return 1.; }
+  //! \param[out] volume_ volume of the element
+  double volume() { 
+    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
+    std::array<double, Tdim> seventh_node = array_nodes_ptr_.at(6)->coordinates();
+    std::array<double, Tdim> length = seventh_node - first_node;
+    volume_ = std::fabs(length.at(0) * length.at(1) * length.at(2));
+    return volume_;
+  }
 
  protected:
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::shapefn_ptr_;

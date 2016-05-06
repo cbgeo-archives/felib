@@ -41,8 +41,14 @@ class felib::QuadrilateralElement
   }
 
   //! Return the length of the quadrilateral element
-  //! \param[out] volume_ length of the element
-  double volume() { return 1.; }
+  //! \param[out] volume_ area of the element
+  double volume() { 
+    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
+    std::array<double, Tdim> third_node = array_nodes_ptr_.at(2)->coordinates();
+    std::array<double, Tdim> length = third_node - first_node;
+    volume_ = std::fabs(length.at(0) * length.at(1));
+    return volume_;
+  }
 
  protected:
   using felib::ElementBase<Tdim, Tnnodes, Tnquadratures>::shapefn_ptr_;
