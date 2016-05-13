@@ -3,7 +3,6 @@
 #include "hexahedron_shapefn.h"
 #include "quadrilateral_quadrature.h"
 #include "element_base.h"
-#include "line_element.h"
 #include "quadrilateral_element.h"
 #include "hexahedron_element.h"
 #include "triangle_element.h"
@@ -21,19 +20,5 @@ int main(int argc, char** argv) {
   auto node = std::make_shared<felib::NodeBase<Dim>>(id, coord);
   node->info();
 
-  // auto hex = std::make_shared<felib::HexahedronShapeFn<Dim, 20>>();
-
-  // auto sf = hex->shapefn(coord);
-
-  // std::cout << sf << std::endl;
-  
-  // auto grad = hex->grad_shapefn(coord);
-
-  // std::cout << grad << std::endl;
-
-  auto quad = std::make_shared<felib::QuadrilateralQuadrature<Dim, 9>>();
-
-  auto points = quad->quadratures();
-
-  std::cout << points << std::endl;
+  auto quad = std::make_shared<felib::TriangleElement<Dim, 3, 3>>(id);
 }

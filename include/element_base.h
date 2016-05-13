@@ -30,8 +30,9 @@ class felib::ElementBase {
   explicit ElementBase(const int& id) : id_{id}, num_nodes_{Tnnodes} {
     // initialise the size of vector of node pointers and set it to null_ptr
     std::fill(array_nodes_ptr_.begin(), array_nodes_ptr_.end(), nullptr);
-    // shapefn_ptr_ = nullptr;
-    // quadrature_ptr_ = nullptr;
+    shapefn_ptr_ = nullptr;
+    quadrature_ptr_ = nullptr;
+    volume_ = std::numeric_limits<double>::quiet_NaN();
   }
 
   //! Destructor
@@ -88,7 +89,8 @@ class felib::ElementBase {
 
   //! \brief Return the volume of the element
   //! \detail Return volume in 3D, area in 2D and length in 1D
-  virtual double volume() = 0;
+  //! \param[in] recompute Recompute volume
+  virtual double volume(const bool& recompute) = 0;
 
  private:
   //! Copy constructor

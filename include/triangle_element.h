@@ -40,15 +40,19 @@ class felib::TriangleElement
   }
 
   //! Return the length of the triangle element
+  //! \param[in] recompute Recompute the volume of the element
   //! \param[out] volume_ area of the element
-  double volume() { 
-    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
-    std::array<double, Tdim> second_node = array_nodes_ptr_.at(1)->coordinates();
-    std::array<double, Tdim> third_node = array_nodes_ptr_.at(2)->coordinates();
-
-    double length_x = second_node.at(0)  - first_node.at(0);
-    double length_y = third_node.at(1) - first_node.at(1);
-    volume_ = std::fabs(0.5 * length_x * length_y);
+  double volume(const bool& recompute) {
+    // Recompute volume if volume is NaN or recompute is requested
+    if (recompute || std::isnan(volume_)) {
+      auto node1 = array_nodes_ptr_.at(0)->coordinates();
+      auto node2 = array_nodes_ptr_.at(1)->coordinates();
+      auto node3 = array_nodes_ptr_.at(2)->coordinates();
+      // 2 * Area = (x2 * y3 - x3 * y2) - (x1 * y3 - x3 * y1) + (x1 * y2 - x2 * y1)
+      volume_ = std::fabs(((node2.at(0) * node3.at(1)) - (node3.at(0) - node2.at(1))) -
+                          ((node1.at(0) * node3.at(1)) - (node3.at(0) - node1.at(1))) +
+                          ((node1.at(0) * node2.at(1)) - (node2.at(0) - node1.at(1))))/2.0;
+    }
     return volume_;
   }
 

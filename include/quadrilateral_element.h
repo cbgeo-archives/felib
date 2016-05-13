@@ -41,12 +41,17 @@ class felib::QuadrilateralElement
   }
 
   //! Return the length of the quadrilateral element
+  //! \param[in] recompute Recompute the volume of the element
   //! \param[out] volume_ area of the element
-  double volume() { 
-    std::array<double, Tdim> first_node = array_nodes_ptr_.at(0)->coordinates();
-    std::array<double, Tdim> third_node = array_nodes_ptr_.at(2)->coordinates();
-    std::array<double, Tdim> length = third_node - first_node;
-    volume_ = std::fabs(length.at(0) * length.at(1));
+  double volume(const bool& recompute) {
+    if (recompute || std::isnan(volume_)) {
+      auto bottom_left = array_nodes_ptr_.at(0)->coordinates();
+      auto top_right = array_nodes_ptr_.at(2)->coordinates();
+      std::array<double, Tdim> length;
+      std::transform(top_right.begin(), top_right.end(), bottom_left.begin(),
+                     length.begin(), std::minus<double>());
+      volume_ = std::fabs(length.at(0) * length.at(1));
+    }
     return volume_;
   }
 
