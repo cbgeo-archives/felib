@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 namespace felib {
 template <unsigned Tdim, unsigned Tnfunctions>

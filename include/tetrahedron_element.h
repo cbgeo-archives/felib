@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 #include "node_base.h"
 #include "quadrature_base.h"
