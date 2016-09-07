@@ -15,8 +15,8 @@ test_script:
 - ctest -C Release -V
 notifications:
 - provider: Slack
-  incoming_webhook: https://hooks.slack.com/services/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
-  channel: felib
+  incoming_webhook: https://hooks.slack.com/services/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
+  channel: fem
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: true
