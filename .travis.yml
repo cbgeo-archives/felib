@@ -1,0 +1,185 @@
+#########################
+# project configuration #
+#########################
+
+# C++ project
+language: cpp
+
+dist: trusty
+sudo: required
+
+###################
+# global settings #
+###################
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "VXnpjzjITfs9Siou+m+gi6sJeQTL5YrueweJyTTTsaBpkIfvtK1wwND0VHsnjIZPhcylcgmwoiAWjdxTkY1nHJLiaRliRf7wnPlPK6eqPgHa6dYJH5RHJUlf/sJeBKBIQLaVmXZPWIRisIZneKYhSALmzGiVmtXfL3Q3e2nPIDdp3qaa13Hvu+GHfzpdR4agT9BoIKaqk6PoDHCvhGrMjVRd5zhl9EsXe4adLwYBihAKoHobCveWUZWLW8m35PQpmjiHydaE3vTbzoTZg1XW6SjVRFIOGBz8D94MlAX4VjbqVRKLBl7OF+/1VT++XLBRh927aJVLv0Z37PlNUTI5cTE/1ZVGq6DMrc01aQrtcEc2mpMZ0C9MgMmcS0cpfDzSviEEASyRv9GD1ePe7129auF6vm/ZQ2k35q0tUbjHqizWJZfw2vLp1YaRfikf4C35tsj3+RZPWoap7TAyYsyO5c2qMmRGfEdFHBfex0UW5269VTEbkU4aKSbpIXo1WSplClTCYUOhehtncK0rkPjudRzA/0aUVzne/JpZEPKiT8j1EWfOXwaQLhM22e+C/bsVQZDUrfN1/xd2RS2kjVZ5C1xI96nvYIrJ3nsx/A2PUS0hYY/02Hcy56Sd29uN15QdJAoTzO/sbI1PFeYFc2pfJUQ5Kxr6PBLeqvk+rpmbTKY="
+
+##################
+# Before install #
+##################
+before_install:
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libeigen3-dev
+
+################
+# build matrix #
+################
+matrix:
+  include:
+    # GCC 4.9
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env: COMPILER=g++-4.9
+
+    # Clang GCC 5
+    - compiler: gcc
+      env: COMPILER=g++-5
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+
+    # Clang 3.6
+    - compiler: clang
+      env: COMPILER=clang++-3.6
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.6
+          packages:
+            - clang-3.6
+
+    # Clang 3.7
+    - compiler: clang
+      env: COMPILER=clang++-3.7
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.7
+          packages:
+            - clang-3.7
+
+    # Coverity scan 
+    - compiler: gcc
+      env:
+        - COMPILER=g++-5
+        - SPECIAL=coverity
+      before_install: echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-certificates.crt
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-5', 'valgrind', 'libeigen3-dev']
+        coverity_scan:
+          project:
+            name: "cb-geo/felib"
+            description: "LBM-DEM Coverity scan build submitted via Travis CI"
+          notification_email: cued.geomechanics@gmail.com
+          build_command_prepend: "cmake ."
+          build_command:   "make"
+          branch_pattern: coverity_scan
+   
+    # Codecov
+    - compiler: gcc
+      env:
+        - COMPILER=g++-5
+        - SPECIAL=codecoverage
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-5', 'ruby']
+      before_script:
+        - wget http://ftp.de.debian.org/debian/pool/main/l/lcov/lcov_1.11.orig.tar.gz
+        - tar xf lcov_1.11.orig.tar.gz
+        - sudo make -C lcov-1.11/ install
+      after_success:
+        - rm -rf ./* && cmake .. -DENABLE_COVERAGE=On
+        - make clean && make
+        - ./felib
+        - ./felibtest
+        - make gcov
+        - make lcov
+        - bash <(curl -s https://codecov.io/bash) -X gcov
+
+
+    # Valgrind and cppcheck
+    - compiler: gcc
+      env:
+        - COMPILER=g++-5
+        - SPECIAL=valgrind
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test']
+          packages: ['g++-5', 'cppcheck', 'valgrind']
+      after_success:
+        - valgrind --error-exitcode=1 --leak-check=full ./felib
+        - valgrind --error-exitcode=1 --leak-check=full ./felibtest
+        - cd .. && cppcheck --enable=warning --inconclusive --force --std=c++11 src/*.cc include/*.h include/*.tcc --error-exitcode=1
+
+    # Clang static analysis
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.7
+          packages:
+            - clang
+            - clang-3.7
+      env: 
+        - COMPILER=clang++-3.7
+        - CONFIG=scan-build
+        - ASAN="ON"
+        - MSAN="ON"
+        - TSAN="ON"
+        - UBSAN="ON"
+        - STATIC_ANALYZER="ON"
+        - CLANG_FORMAT="ON"
+        - CLANG_TIDY="ON"
+      after_success:
+        - scan-build cmake ..
+        - scan-build make
+
+    # OSX / Clang
+    - os: osx
+      osx_image: xcode7.3
+      before_install:
+        - brew update
+        - brew install eigen
+
+    - os: osx
+      osx_image: xcode8
+      before_install:
+        - brew update
+        - brew install eigen
+
+################
+# build script #
+################
+
+script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then make ; fi
+    - ctest -VV -S
+
+notifications:
+  slack:
+    rooms:
+      - cb-geo:0N3fJy823MGsJvcDB91m4p8H#felib
+
