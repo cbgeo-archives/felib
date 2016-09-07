@@ -22,14 +22,13 @@ template <unsigned Tdim, unsigned Tnfunctions>
 class felib::HexahedronShapeFn : public felib::ShapeFnBase<Tdim, Tnfunctions> {
 
  public:
-  
   // Default constructor
   HexahedronShapeFn() : felib::ShapeFnBase<Tdim, Tnfunctions>() {
     static_assert(Tdim == 3, "Invalid dimension for a hexahedron element");
     static_assert((Tnfunctions == 8 || Tnfunctions == 20),
                   "Invalid shape functions for a hexahedron element");
   }
-  
+
   // Evaluate shape functions
   //! \param[in] xi Local coordinates
   //! \param[out] shapefn_ Shape functions at the given local coordinates
