@@ -52,6 +52,9 @@ add_executable(felib
 SET(test_src
   ${felib_SOURCE_DIR}/tests/test.cc
   ${felib_SOURCE_DIR}/tests/base/node_base_test.cc
+  ${felib_SOURCE_DIR}/tests/line/line_shapefn_test.cc
+  ${felib_SOURCE_DIR}/tests/line/line_quadrature_test.cc
+
 )   
 add_executable(felibtest
 	       ${test_src}
