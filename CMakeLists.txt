@@ -52,7 +52,7 @@ add_executable(felib
 SET(test_src
   ${felib_SOURCE_DIR}/tests/test.cc
   ${felib_SOURCE_DIR}/tests/base/node_base_test.cc
-  ${felib_SOURCE_DIR}/tests/elements/quadirlateral/quadirlateral_quadrature_test.cc
+  ${felib_SOURCE_DIR}/tests/elements/quadrilateral/quadrilateral_quadrature_test.cc
 
 )   
 add_executable(felibtest
