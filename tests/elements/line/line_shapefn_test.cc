@@ -30,14 +30,13 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf.rows() == Nfunctions);
       REQUIRE(gradsf.cols() == Dim);
 
-
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
-    
+
     // Coordinates is (-0.5);
     SECTION("Two noded line shape function for coordinates(-0.5)") {
-      std::array<double, Dim> coords = {{ -0.5 }};
+      std::array<double, Dim> coords = {{-0.5}};
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
@@ -51,14 +50,13 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf.rows() == Nfunctions);
       REQUIRE(gradsf.cols() == Dim);
 
-
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
-    
+
     // Coordinates is (0.5)
     SECTION("Two noded line shape function for coordinates(0.5)") {
-      std::array<double, Dim> coords = {{ 0.5 }};
+      std::array<double, Dim> coords = {{0.5}};
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
@@ -72,13 +70,10 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf.rows() == Nfunctions);
       REQUIRE(gradsf.cols() == Dim);
 
-
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
     }
-    
   }
-
 
   //! Check for 3 noded shape function
   SECTION("Line shape function with three nodes") {
@@ -102,15 +97,14 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf.rows() == Nfunctions);
       REQUIRE(gradsf.cols() == Dim);
 
-
       REQUIRE(gradsf(0) == Approx(-0.5).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.5).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(0.0).epsilon(Tolerance));
     }
-    
+
     // Coordinates is (-0.5);
     SECTION("Three noded line shape function for coordinates(-0.5)") {
-      std::array<double, Dim> coords = {{ -0.5 }};
+      std::array<double, Dim> coords = {{-0.5}};
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
@@ -125,15 +119,14 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf.rows() == Nfunctions);
       REQUIRE(gradsf.cols() == Dim);
 
-
       REQUIRE(gradsf(0) == Approx(-1.0).epsilon(Tolerance));
       REQUIRE(gradsf(1) == Approx(0.0).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(1.0).epsilon(Tolerance));
     }
-    
+
     // Coordinates is (0.5)
     SECTION("Three noded line shape function for coordinates(0.5)") {
-      std::array<double, Dim> coords = {{ 0.5 }};
+      std::array<double, Dim> coords = {{0.5}};
       auto shapefn = linesf->shapefn(coords);
 
       // Check shape function
@@ -152,6 +145,5 @@ TEST_CASE("Line shape functions are checked", "[linesf][line][shapefn][1D]") {
       REQUIRE(gradsf(1) == Approx(1.0).epsilon(Tolerance));
       REQUIRE(gradsf(2) == Approx(-1.0).epsilon(Tolerance));
     }
-    
   }
 }
