@@ -74,7 +74,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedronShapeFn<3, 8>::grad_shapefn(
 //!       |/             | /
 //!       0_ _ _ 0 _ _ _ 0
 //!     4        16         5
-emplate <>
+template <>
 inline Eigen::Matrix<double, 20, 1> felib::HexahedronShapeFn<3, 20>::shapefn(
     const std::array<double, 3>& xi) {
 
