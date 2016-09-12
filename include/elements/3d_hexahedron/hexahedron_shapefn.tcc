@@ -74,6 +74,7 @@ inline Eigen::Matrix<double, 8, 3> felib::HexahedronShapeFn<3, 8>::grad_shapefn(
 //!       |/             | /
 //!       0_ _ _ 0 _ _ _ 0
 //!     4        16         5
+
 template <>
 inline Eigen::Matrix<double, 20, 1> felib::HexahedronShapeFn<3, 20>::shapefn(
     const std::array<double, 3>& xi) {
@@ -98,15 +99,15 @@ inline Eigen::Matrix<double, 20, 1> felib::HexahedronShapeFn<3, 20>::shapefn(
 
   shapefn_(8) =
       0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(1)) * (1 - xi.at(2));
-  shapefn_(9) =
-      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0)) * (1 - xi.at(2));
-  shapefn_(10) =
-      0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2));
   shapefn_(11) =
-      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0)) * (1 - xi.at(2));
-  shapefn_(12) =
-      0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0)) * (1 - xi.at(1));
+      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0)) * (1 - xi.at(2));
   shapefn_(13) =
+      0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1)) * (1 - xi.at(2));
+  shapefn_(9) =
+      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0)) * (1 - xi.at(2));
+  shapefn_(10) =
+      0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0)) * (1 - xi.at(1));
+  shapefn_(12) =
       0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(0)) * (1 - xi.at(1));
   shapefn_(14) =
       0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(0)) * (1 + xi.at(1));
@@ -114,11 +115,11 @@ inline Eigen::Matrix<double, 20, 1> felib::HexahedronShapeFn<3, 20>::shapefn(
       0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0)) * (1 + xi.at(1));
   shapefn_(16) =
       0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(1)) * (1 + xi.at(2));
-  shapefn_(17) =
-      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0)) * (1 + xi.at(2));
   shapefn_(18) =
-      0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1)) * (1 + xi.at(2));
+      0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0)) * (1 + xi.at(2));
   shapefn_(19) =
+      0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1)) * (1 + xi.at(2));
+  shapefn_(17) =
       0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0)) * (1 + xi.at(2));
   return shapefn_;
 }
@@ -144,17 +145,17 @@ inline Eigen::Matrix<double, 20, 3> felib::HexahedronShapeFn<
   grad_shapefn_(7, 0) = 0.125 * (2 * xi.at(0) - xi.at(1) - xi.at(2) + 1) *
                         (1 + xi.at(1)) * (1 + xi.at(2));
   grad_shapefn_(8, 0) = -0.5 * xi.at(0) * (1 - xi.at(1)) * (1 - xi.at(2));
-  grad_shapefn_(9, 0) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(2));
-  grad_shapefn_(10, 0) = -0.5 * xi.at(0) * (1 + xi.at(1)) * (1 - xi.at(2));
-  grad_shapefn_(11, 0) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(2));
-  grad_shapefn_(12, 0) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(1));
-  grad_shapefn_(13, 0) = 0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(1));
+  grad_shapefn_(11, 0) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(2));
+  grad_shapefn_(13, 0) = -0.5 * xi.at(0) * (1 + xi.at(1)) * (1 - xi.at(2));
+  grad_shapefn_(9, 0) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(2));
+  grad_shapefn_(10, 0) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(1));
+  grad_shapefn_(12, 0) = 0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(1));
   grad_shapefn_(14, 0) = 0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(1));
   grad_shapefn_(15, 0) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(1));
   grad_shapefn_(16, 0) = -0.5 * xi.at(0) * (1 - xi.at(1)) * (1 + xi.at(2));
-  grad_shapefn_(17, 0) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(2));
-  grad_shapefn_(18, 0) = -0.5 * xi.at(0) * (1 + xi.at(1)) * (1 + xi.at(2));
-  grad_shapefn_(19, 0) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(2));
+  grad_shapefn_(18, 0) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(2));
+  grad_shapefn_(19, 0) = -0.5 * xi.at(0) * (1 + xi.at(1)) * (1 + xi.at(2));
+  grad_shapefn_(17, 0) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(2));
 
   grad_shapefn_(0, 1) = 0.125 * (xi.at(0) + 2 * xi.at(1) + xi.at(2) + 1) *
                         (1 - xi.at(0)) * (1 - xi.at(2));
@@ -173,17 +174,17 @@ inline Eigen::Matrix<double, 20, 3> felib::HexahedronShapeFn<
   grad_shapefn_(7, 1) = -0.125 * (xi.at(0) - 2 * xi.at(1) - xi.at(2) + 1) *
                         (1 - xi.at(1)) * (1 + xi.at(2));
   grad_shapefn_(8, 1) = -0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(2));
-  grad_shapefn_(9, 1) = -0.5 * xi.at(1) * (1 + xi.at(0)) * (1 - xi.at(2));
-  grad_shapefn_(10, 1) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(2));
-  grad_shapefn_(11, 1) = -0.5 * xi.at(1) * (1 - xi.at(0)) * (1 - xi.at(2));
-  grad_shapefn_(12, 1) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0));
-  grad_shapefn_(13, 1) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(0));
+  grad_shapefn_(11, 1) = -0.5 * xi.at(1) * (1 + xi.at(0)) * (1 - xi.at(2));
+  grad_shapefn_(13, 1) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(2));
+  grad_shapefn_(9, 1) = -0.5 * xi.at(1) * (1 - xi.at(0)) * (1 - xi.at(2));
+  grad_shapefn_(10, 1) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0));
+  grad_shapefn_(12, 1) = -0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(0));
   grad_shapefn_(14, 1) = 0.25 * (1 - xi.at(2) * xi.at(2)) * (1 + xi.at(0));
   grad_shapefn_(15, 1) = 0.25 * (1 - xi.at(2) * xi.at(2)) * (1 - xi.at(0));
   grad_shapefn_(16, 1) = -0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(2));
-  grad_shapefn_(17, 1) = -0.5 * xi.at(1) * (1 + xi.at(0)) * (1 + xi.at(2));
-  grad_shapefn_(18, 1) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(2));
-  grad_shapefn_(19, 1) = -0.5 * xi.at(1) * (1 - xi.at(0)) * (1 + xi.at(2));
+  grad_shapefn_(18, 1) = -0.5 * xi.at(1) * (1 + xi.at(0)) * (1 + xi.at(2));
+  grad_shapefn_(19, 1) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(2));
+  grad_shapefn_(17, 1) = -0.5 * xi.at(1) * (1 - xi.at(0)) * (1 + xi.at(2));
 
   grad_shapefn_(0, 2) = 0.125 * (xi.at(0) + xi.at(1) + 2 * xi.at(2) + 1) *
                         (1 - xi.at(0)) * (1 - xi.at(1));
@@ -202,17 +203,17 @@ inline Eigen::Matrix<double, 20, 3> felib::HexahedronShapeFn<
   grad_shapefn_(7, 2) = -0.125 * (xi.at(0) - xi.at(1) - 2 * xi.at(2) + 1) *
                         (1 - xi.at(1)) * (1 + xi.at(1));
   grad_shapefn_(8, 2) = -0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(1));
-  grad_shapefn_(9, 2) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0));
-  grad_shapefn_(10, 2) = -0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1));
-  grad_shapefn_(11, 2) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0));
-  grad_shapefn_(12, 2) = -0.5 * xi.at(2) * (1 - xi.at(0)) * (1 - xi.at(1));
-  grad_shapefn_(13, 2) = -0.5 * xi.at(2) * (1 + xi.at(0)) * (1 - xi.at(1));
+  grad_shapefn_(11, 2) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0));
+  grad_shapefn_(13, 2) = -0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1));
+  grad_shapefn_(9, 2) = -0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0));
+  grad_shapefn_(10, 2) = -0.5 * xi.at(2) * (1 - xi.at(0)) * (1 - xi.at(1));
+  grad_shapefn_(12, 2) = -0.5 * xi.at(2) * (1 + xi.at(0)) * (1 - xi.at(1));
   grad_shapefn_(14, 2) = -0.5 * xi.at(2) * (1 + xi.at(0)) * (1 + xi.at(1));
   grad_shapefn_(15, 2) = -0.5 * xi.at(2) * (1 - xi.at(0)) * (1 + xi.at(1));
   grad_shapefn_(16, 2) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 - xi.at(1));
-  grad_shapefn_(17, 2) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0));
-  grad_shapefn_(18, 2) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1));
-  grad_shapefn_(19, 2) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0));
+  grad_shapefn_(18, 2) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 + xi.at(0));
+  grad_shapefn_(19, 2) = 0.25 * (1 - xi.at(0) * xi.at(0)) * (1 + xi.at(1));
+  grad_shapefn_(17, 2) = 0.25 * (1 - xi.at(1) * xi.at(1)) * (1 - xi.at(0));
   return grad_shapefn_;
 }
 
