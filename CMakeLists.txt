@@ -52,15 +52,15 @@ add_executable(felib
 SET(test_src
   ${felib_SOURCE_DIR}/tests/test.cc
 	${felib_SOURCE_DIR}/tests/base/node_base_test.cc
-	${felib_SOURCE_DIR}/tests/line/line_shapefn_test.cc
-	${felib_SOURCE_DIR}/tests/line/line_quadrature_test.cc
-	${felib_SOURCE_DIR}/tests/triangle/triangle_shapefn_test.cc
-	${felib_SOURCE_DIR}/tests/triangle/triangle_quadrature_test.cc
-	${felib_SOURCE_DIR}/tests/quadrilateral/quadrilateral_shapefn_test.cc
-	${felib_SOURCE_DIR}/tests/quadrilateral/quadrilateral_quadrature_test.cc
-	${felib_SOURCE_DIR}/tests/hexahedron/hexahedron_shapefn_test.cc
-	${felib_SOURCE_DIR}/tests/hexahedron/hexahedron_quadrature_test.cc
-	${felib_SOURCE_DIR}/tests/tetrahedron/tetrahedron_quadrature_test.cc
+	${felib_SOURCE_DIR}/tests/elements/1d_line/line_shapefn_test.cc
+	${felib_SOURCE_DIR}/tests/elements/1d_line/line_quadrature_test.cc
+	${felib_SOURCE_DIR}/tests/elements/2d_triangle/triangle_shapefn_test.cc
+	${felib_SOURCE_DIR}/tests/elements/2d_triangle/triangle_quadrature_test.cc
+	${felib_SOURCE_DIR}/tests/elements/2d_quadrilateral/quadrilateral_shapefn_test.cc
+	${felib_SOURCE_DIR}/tests/elements/2d_quadrilateral/quadrilateral_quadrature_test.cc
+	${felib_SOURCE_DIR}/tests/elements/3d_hexahedron/hexahedron_shapefn_test.cc
+	${felib_SOURCE_DIR}/tests/elements/3d_hexahedron/hexahedron_quadrature_test.cc
+	${felib_SOURCE_DIR}/tests/elements/3d_tetrahedron/tetrahedron_quadrature_test.cc
 )   
 add_executable(felibtest
 	       ${test_src}

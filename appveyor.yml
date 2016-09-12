@@ -11,8 +11,8 @@ build_script:
 - set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
 - cmake . -G "Visual Studio 14 2015" -DEIGEN3_INCLUDE_DIR=C:\projects\eigen-eigen-ce5a455b34c0
 - cmake --build . --config Release
-test_script:
-- ctest -C Release -V
+#test_script:
+#- ctest -C Release -V
 notifications:
 - provider: Slack
   incoming_webhook: https://hooks.slack.com/services/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
