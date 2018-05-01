@@ -37,7 +37,7 @@ TEST_CASE("Quadrilateral quadratures are checked",
     REQUIRE(weights.size() == 1);
 
     // Check weights
-    REQUIRE(weights.at(0) == Approx(8.0).epsilon(Tolerance));
+    REQUIRE(weights.at(0) == Approx(4.0).epsilon(Tolerance));
   }
 
   //! Check for four quadrature points
