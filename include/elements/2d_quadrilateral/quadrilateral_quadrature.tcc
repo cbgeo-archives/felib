@@ -12,7 +12,7 @@ felib::QuadrilateralQuadrature<Tdim, Tnquadratures>::QuadrilateralQuadrature()
     qpoints_(0, 0) = 0.;
     qpoints_(0, 1) = 0.;
 
-    weights_.at(0) = 8.;
+    weights_.at(0) = 4.;
 
   } else if (Tnquadratures == 4) {
     // Define quadratures
